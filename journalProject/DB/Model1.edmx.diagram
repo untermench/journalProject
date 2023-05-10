@@ -23,6 +23,10 @@
         <AssociationConnector Association="journalDBModel.FK_Пользователь_Тип_сотрудника" ManuallyRouted="false" />
         <AssociationConnector Association="journalDBModel.FK_Урок_Учитель" ManuallyRouted="false" />
         <AssociationConnector Association="journalDBModel.FK_Урок_Предмет" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="journalDBModel.Доступ" Width="1.5" PointX="7.5" PointY="0.75" />
+        <AssociationConnector Association="journalDBModel.FK_Доступ_Класс" />
+        <AssociationConnector Association="journalDBModel.FK_Доступ_Пользователь" />
+        <AssociationConnector Association="journalDBModel.FK_Доступ_Предмет" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

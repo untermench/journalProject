@@ -18,6 +18,7 @@ namespace journalProject.DB
         public Предмет()
         {
             this.Урок = new HashSet<Урок>();
+            this.Доступ = new HashSet<Доступ>();
         }
     
         public int ID { get; set; }
@@ -25,5 +26,7 @@ namespace journalProject.DB
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Урок> Урок { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Доступ> Доступ { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище journalDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище journalDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -21,6 +21,15 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="УченикID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Доступ">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="УчительID" Type="int" />
+          <Property Name="КлассID" Type="int" />
+          <Property Name="ПредметID" Type="int" />
         </EntityType>
         <EntityType Name="Класс">
           <Key>
@@ -97,6 +106,42 @@
             </Principal>
             <Dependent Role="Дневник">
               <PropertyRef Name="УченикID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Доступ_Класс">
+          <End Role="Класс" Type="Self.Класс" Multiplicity="0..1" />
+          <End Role="Доступ" Type="Self.Доступ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Класс">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Доступ">
+              <PropertyRef Name="КлассID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Доступ_Пользователь">
+          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="0..1" />
+          <End Role="Доступ" Type="Self.Доступ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователь">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Доступ">
+              <PropertyRef Name="УчительID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Доступ_Предмет">
+          <End Role="Предмет" Type="Self.Предмет" Multiplicity="0..1" />
+          <End Role="Доступ" Type="Self.Доступ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Предмет">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Доступ">
+              <PropertyRef Name="ПредметID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -199,6 +244,7 @@
         <EntityContainer Name="Хранилище journalDBModelContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Дневник" EntityType="Self.Дневник" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Доступ" EntityType="Self.Доступ" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Класс" EntityType="Self.Класс" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Оценка_урок" EntityType="Self.Оценка_урок" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Пользователь" EntityType="Self.Пользователь" Schema="dbo" store:Type="Tables" />
@@ -209,6 +255,18 @@
           <AssociationSet Name="FK_Дневник_Ученик" Association="Self.FK_Дневник_Ученик">
             <End Role="Ученик" EntitySet="Ученик" />
             <End Role="Дневник" EntitySet="Дневник" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Доступ_Класс" Association="Self.FK_Доступ_Класс">
+            <End Role="Класс" EntitySet="Класс" />
+            <End Role="Доступ" EntitySet="Доступ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Доступ_Пользователь" Association="Self.FK_Доступ_Пользователь">
+            <End Role="Пользователь" EntitySet="Пользователь" />
+            <End Role="Доступ" EntitySet="Доступ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Доступ_Предмет" Association="Self.FK_Доступ_Предмет">
+            <End Role="Предмет" EntitySet="Предмет" />
+            <End Role="Доступ" EntitySet="Доступ" />
           </AssociationSet>
           <AssociationSet Name="FK_Класс_Учитель" Association="Self.FK_Класс_Учитель">
             <End Role="Пользователь" EntitySet="Пользователь" />
@@ -243,8 +301,7 @@
             <End Role="Ученик" EntitySet="Ученик" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="journalDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -278,6 +335,7 @@
           <NavigationProperty Name="Пользователь" Relationship="Self.FK_Класс_Учитель" FromRole="Класс" ToRole="Пользователь" />
           <NavigationProperty Name="Урок" Relationship="Self.FK_Урок_Класс" FromRole="Класс" ToRole="Урок" />
           <NavigationProperty Name="Ученик" Relationship="Self.FK_Ученик_Класс" FromRole="Класс" ToRole="Ученик" />
+          <NavigationProperty Name="Доступ" Relationship="journalDBModel.FK_Доступ_Класс" FromRole="Класс" ToRole="Доступ" />
         </EntityType>
         <EntityType Name="Оценка_урок">
           <Key>
@@ -305,6 +363,7 @@
           <NavigationProperty Name="Класс" Relationship="Self.FK_Класс_Учитель" FromRole="Пользователь" ToRole="Класс" />
           <NavigationProperty Name="Тип_сотрудника" Relationship="Self.FK_Пользователь_Тип_сотрудника" FromRole="Пользователь" ToRole="Тип_сотрудника" />
           <NavigationProperty Name="Урок" Relationship="Self.FK_Урок_Учитель" FromRole="Пользователь" ToRole="Урок" />
+          <NavigationProperty Name="Доступ" Relationship="journalDBModel.FK_Доступ_Пользователь" FromRole="Пользователь" ToRole="Доступ" />
         </EntityType>
         <EntityType Name="Предмет">
           <Key>
@@ -313,6 +372,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Урок" Relationship="Self.FK_Урок_Предмет" FromRole="Предмет" ToRole="Урок" />
+          <NavigationProperty Name="Доступ" Relationship="journalDBModel.FK_Доступ_Предмет" FromRole="Предмет" ToRole="Доступ" />
         </EntityType>
         <EntityType Name="Тип_сотрудника">
           <Key>
@@ -503,7 +563,68 @@
             <End Role="Предмет" EntitySet="Предмет" />
             <End Role="Урок" EntitySet="Урок" />
           </AssociationSet>
+          <EntitySet Name="Доступ" EntityType="journalDBModel.Доступ" />
+          <AssociationSet Name="FK_Доступ_Класс" Association="journalDBModel.FK_Доступ_Класс">
+            <End Role="Класс" EntitySet="Класс" />
+            <End Role="Доступ" EntitySet="Доступ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Доступ_Пользователь" Association="journalDBModel.FK_Доступ_Пользователь">
+            <End Role="Пользователь" EntitySet="Пользователь" />
+            <End Role="Доступ" EntitySet="Доступ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Доступ_Предмет" Association="journalDBModel.FK_Доступ_Предмет">
+            <End Role="Предмет" EntitySet="Предмет" />
+            <End Role="Доступ" EntitySet="Доступ" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Доступ">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="УчительID" Type="Int32" />
+          <Property Name="КлассID" Type="Int32" />
+          <Property Name="ПредметID" Type="Int32" />
+          <NavigationProperty Name="Класс" Relationship="journalDBModel.FK_Доступ_Класс" FromRole="Доступ" ToRole="Класс" />
+          <NavigationProperty Name="Пользователь" Relationship="journalDBModel.FK_Доступ_Пользователь" FromRole="Доступ" ToRole="Пользователь" />
+          <NavigationProperty Name="Предмет" Relationship="journalDBModel.FK_Доступ_Предмет" FromRole="Доступ" ToRole="Предмет" />
+        </EntityType>
+        <Association Name="FK_Доступ_Класс">
+          <End Type="journalDBModel.Класс" Role="Класс" Multiplicity="0..1" />
+          <End Type="journalDBModel.Доступ" Role="Доступ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Класс">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Доступ">
+              <PropertyRef Name="КлассID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Доступ_Пользователь">
+          <End Type="journalDBModel.Пользователь" Role="Пользователь" Multiplicity="0..1" />
+          <End Type="journalDBModel.Доступ" Role="Доступ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователь">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Доступ">
+              <PropertyRef Name="УчительID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Доступ_Предмет">
+          <End Type="journalDBModel.Предмет" Role="Предмет" Multiplicity="0..1" />
+          <End Type="journalDBModel.Доступ" Role="Доступ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Предмет">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Доступ">
+              <PropertyRef Name="ПредметID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -599,6 +720,16 @@
                 <ScalarProperty Name="Отчество" ColumnName="Отчество" />
                 <ScalarProperty Name="Дата_рождения" ColumnName="Дата_рождения" />
                 <ScalarProperty Name="КлассID" ColumnName="КлассID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Доступ">
+            <EntityTypeMapping TypeName="journalDBModel.Доступ">
+              <MappingFragment StoreEntitySet="Доступ">
+                <ScalarProperty Name="ПредметID" ColumnName="ПредметID" />
+                <ScalarProperty Name="КлассID" ColumnName="КлассID" />
+                <ScalarProperty Name="УчительID" ColumnName="УчительID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

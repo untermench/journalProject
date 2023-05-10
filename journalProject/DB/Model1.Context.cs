@@ -34,5 +34,6 @@ namespace journalProject.DB
         public virtual DbSet<Тип_сотрудника> Тип_сотрудника { get; set; }
         public virtual DbSet<Урок> Урок { get; set; }
         public virtual DbSet<Ученик> Ученик { get; set; }
+        public virtual DbSet<Доступ> Доступ { get; set; }
     }
 }

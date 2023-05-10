@@ -94,6 +94,9 @@
     <Compile Include="DB\Дневник.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="DB\Доступ.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB\Класс.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

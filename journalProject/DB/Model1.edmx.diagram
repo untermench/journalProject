@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e44e7404162c4d658a7a8bad870e5be8" Name="Diagram1">
+        <EntityTypeShape EntityType="journalDBModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="journalDBModel.Дневник" Width="1.5" PointX="9.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="journalDBModel.Класс" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="journalDBModel.Оценка_урок" Width="1.5" PointX="12" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="journalDBModel.Пользователь" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="journalDBModel.Предмет" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="journalDBModel.Тип_сотрудника" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="journalDBModel.Урок" Width="1.5" PointX="7.5" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="journalDBModel.Ученик" Width="1.5" PointX="7.5" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="journalDBModel.FK_Дневник_Ученик" ManuallyRouted="false" />
+        <AssociationConnector Association="journalDBModel.FK_Оценка_урок_Дневник" ManuallyRouted="false" />
+        <AssociationConnector Association="journalDBModel.FK_Класс_Учитель" ManuallyRouted="false" />
+        <AssociationConnector Association="journalDBModel.FK_Урок_Класс" ManuallyRouted="false" />
+        <AssociationConnector Association="journalDBModel.FK_Ученик_Класс" ManuallyRouted="false" />
+        <AssociationConnector Association="journalDBModel.FK_Оценка_урок_Урок" ManuallyRouted="false" />
+        <AssociationConnector Association="journalDBModel.FK_Пользователь_Тип_сотрудника" ManuallyRouted="false" />
+        <AssociationConnector Association="journalDBModel.FK_Урок_Учитель" ManuallyRouted="false" />
+        <AssociationConnector Association="journalDBModel.FK_Урок_Предмет" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

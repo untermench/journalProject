@@ -1,0 +1,31 @@
+﻿<Window x:Class="journalProject.ProjectWin.FrameWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:journalProject.ProjectWin" xmlns:journalproject="clr-namespace:journalProject"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="FrameWin" Height="450" Width="800" MinHeight="450" MinWidth="800" WindowState="Maximized">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="38*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="690*"/>
+        </Grid.ColumnDefinitions>
+
+        <Frame Background="#FF7CB3E6" x:Name="pagesFrame" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2" Margin="54,0,0,0" Grid.RowSpan="2" Grid.Column="0" />
+
+        <Path Height="25" Width="25" Grid.Row="0" Stretch="Uniform" Fill="#2a84f1" Margin="15,10,0,0" Data="M11.063,2.46883 C11.5716714,2.06187429 12.2791765,2.03280602 12.8162528,2.3816252 L12.937,2.46883 L17.2494,5.91871 C17.67636,6.260305 17.942778,6.7599067 17.991792,7.29932962 L18,7.48045 L18,10 L20,10 C21.0543909,10 21.9181678,10.81585 21.9945144,11.8507339 L22,12 L22,19.9 C22,20.467 21.5709778,20.9338222 21.0198548,20.9935452 L20.9,21 L3.1,21 C2.53299067,21 2.06617653,20.5709778 2.00645469,20.0198548 L2,19.9 L2,12 C2,10.9456091 2.81587733,10.0818322 3.85073759,10.0054856 L4,10 L6,10 L6,7.48045 C6,6.933637 6.2237058,6.4135135 6.61430643,6.03826498 L6.75061,5.91871 L11.063,2.46883 Z M12,4.28045 L8,7.48045 L8,18.9998 L16,18.9998 L16,7.48045 L12,4.28045 Z M20,12 L18,12 L18,19 L20,19 L20,12 Z M6,12 L4,12 L4,19 L6,19 L6,12 Z M12,8 C13.6569,8 15,9.34315 15,11 C15,12.6569 13.6569,14 12,14 C10.3431,14 9,12.6569 9,11 C9,9.34315 10.3431,8 12,8 Z M12,10 C11.4477,10 11,10.4477 11,11 C11,11.5523 11.4477,12 12,12 C12.5523,12 13,11.5523 13,11 C13,10.4477 12.5523,10 12,10 Z" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <ListBox Grid.Column="0" SelectionChanged="Sidebar_SelectionChanged" SelectionMode="Single" x:Name="Sidebar" BorderThickness="0,1,0,0" Grid.RowSpan="2" Margin="0,50,0,0" HorizontalAlignment="Left" Width="54">
+
+            <journalproject:NavButton NavLink="/ProjectPages/MyClassPage.xaml" Margin="3" Padding="6" Icon="M30 8v33h-24v-33h24m4-4h-32v42h32v-42zm-25 8h18v4h-18zm0 7h18v4h-18zm0 7h18v4h-18zm0 7h18v4h-18zm31-21h8v28h-8zm4.006-11c-2.194 0-4.006 1.765-4.006 3.937v4.063h8v-4.063c0-2.172-1.809-3.937-3.994-3.937zm-4.068 42l4.041 6.387 4.021-6.387z" />
+            <journalproject:NavButton NavLink="/ProjectPages/TeacherAccountPage.xaml" Margin="3" Padding="6" Icon="M18 18.7023C18 15.6706 14.5 15 12 15C9.5 15 6 15.6706 6 18.7023M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12ZM15 9C15 10.6569 13.6569 12 12 12C10.3431 12 9 10.6569 9 9C9 7.34315 10.3431 6 12 6C13.6569 6 15 7.34315 15 9Z"/>
+            <journalproject:NavButton Grid.Row="1" VerticalAlignment="Bottom" NavLink="/ProjectPages/TeacherAccountPage.xaml" Padding="6" Icon="M4,12a1,1,0,0,0,1,1h7.59l-2.3,2.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l4-4a1,1,0,0,0,.21-.33,1,1,0,0,0,0-.76,1,1,0,0,0-.21-.33l-4-4a1,1,0,1,0-1.42,1.42L12.59,11H5A1,1,0,0,0,4,12ZM17,2H7A3,3,0,0,0,4,5V8A1,1,0,0,0,6,8V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1V19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V16a1,1,0,0,0-2,0v3a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V5A3,3,0,0,0,17,2Z" Selected="NavButton_Selected" HorizontalAlignment="Center"/>
+
+        </ListBox>
+    </Grid>
+</Window>

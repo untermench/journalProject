@@ -4,29 +4,32 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e44e7404162c4d658a7a8bad870e5be8" Name="Diagram1">
-        <EntityTypeShape EntityType="journalDBModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="journalDBModel.Дневник" Width="1.5" PointX="9.75" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="journalDBModel.Класс" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="journalDBModel.Оценка_урок" Width="1.5" PointX="12" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="journalDBModel.Пользователь" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="journalDBModel.Предмет" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="journalDBModel.Тип_сотрудника" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="journalDBModel.Урок" Width="1.5" PointX="7.5" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="journalDBModel.Ученик" Width="1.5" PointX="7.5" PointY="6.75" IsExpanded="true" />
-        <AssociationConnector Association="journalDBModel.FK_Дневник_Ученик" ManuallyRouted="false" />
-        <AssociationConnector Association="journalDBModel.FK_Оценка_урок_Дневник" ManuallyRouted="false" />
-        <AssociationConnector Association="journalDBModel.FK_Класс_Учитель" ManuallyRouted="false" />
+      <Diagram DiagramId="81ee7f4844ef4e3c9faff944fcf7705c" Name="Diagram1">
+        <EntityTypeShape EntityType="journalDBModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="journalDBModel.Доступ" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="journalDBModel.Занятие" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="journalDBModel.Занятие_ученик" Width="1.5" PointX="7.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="journalDBModel.Кабинет" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="journalDBModel.Класс" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="journalDBModel.Пользователь" Width="1.5" PointX="1.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="journalDBModel.Предмет" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="journalDBModel.Тема" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="journalDBModel.Тип_пользователя" Width="1.5" PointX="1.5" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="journalDBModel.Ученик" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <AssociationConnector Association="journalDBModel.FK_Доступ_Класс" ManuallyRouted="false" />
+        <AssociationConnector Association="journalDBModel.FK_Доступ_Пользователь" ManuallyRouted="false" />
+        <AssociationConnector Association="journalDBModel.FK_Доступ_Предмет" ManuallyRouted="false" />
+        <AssociationConnector Association="journalDBModel.FK_Занятие_Кабинет" ManuallyRouted="false" />
+        <AssociationConnector Association="journalDBModel.FK_Занятие_Предмет" ManuallyRouted="false" />
+        <AssociationConnector Association="journalDBModel.FK_Занятие_Тема" ManuallyRouted="false" />
+        <AssociationConnector Association="journalDBModel.FK_Занятие_ученик_Занятие" ManuallyRouted="false" />
         <AssociationConnector Association="journalDBModel.FK_Урок_Класс" ManuallyRouted="false" />
-        <AssociationConnector Association="journalDBModel.FK_Ученик_Класс" ManuallyRouted="false" />
-        <AssociationConnector Association="journalDBModel.FK_Оценка_урок_Урок" ManuallyRouted="false" />
-        <AssociationConnector Association="journalDBModel.FK_Пользователь_Тип_сотрудника" ManuallyRouted="false" />
         <AssociationConnector Association="journalDBModel.FK_Урок_Учитель" ManuallyRouted="false" />
-        <AssociationConnector Association="journalDBModel.FK_Урок_Предмет" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="journalDBModel.Доступ" Width="1.5" PointX="7.5" PointY="0.75" />
-        <AssociationConnector Association="journalDBModel.FK_Доступ_Класс" />
-        <AssociationConnector Association="journalDBModel.FK_Доступ_Пользователь" />
-        <AssociationConnector Association="journalDBModel.FK_Доступ_Предмет" />
+        <AssociationConnector Association="journalDBModel.FK_Занятие_ученик_Ученик" ManuallyRouted="false" />
+        <AssociationConnector Association="journalDBModel.FK_Класс_Учитель" ManuallyRouted="false" />
+        <AssociationConnector Association="journalDBModel.FK_Ученик_Класс" ManuallyRouted="false" />
+        <AssociationConnector Association="journalDBModel.FK_Пользователь_Тип_сотрудника" ManuallyRouted="false" />
+        <AssociationConnector Association="journalDBModel.FK_Тема_Предмет" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

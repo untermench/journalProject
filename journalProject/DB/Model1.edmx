@@ -15,13 +15,6 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="Дневник">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="УченикID" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Доступ">
           <Key>
             <PropertyRef Name="ID" />
@@ -31,6 +24,35 @@
           <Property Name="КлассID" Type="int" />
           <Property Name="ПредметID" Type="int" />
         </EntityType>
+        <EntityType Name="Занятие">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="КлассID" Type="int" Nullable="false" />
+          <Property Name="ПредметID" Type="int" Nullable="false" />
+          <Property Name="УчительID" Type="int" Nullable="false" />
+          <Property Name="Дата" Type="date" Nullable="false" />
+          <Property Name="КабинетID" Type="int" Nullable="false" />
+          <Property Name="ТемаID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Занятие_ученик">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="УченикID" Type="int" Nullable="false" />
+          <Property Name="ЗанятиеID" Type="int" Nullable="false" />
+          <Property Name="Оценка" Type="int" />
+          <Property Name="Присутствие" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Кабинет">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Номер" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Класс">
           <Key>
             <PropertyRef Name="ID" />
@@ -39,15 +61,6 @@
           <Property Name="Номер" Type="int" Nullable="false" />
           <Property Name="Префикс" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="Класс_рукID" Type="int" />
-        </EntityType>
-        <EntityType Name="Оценка_урок">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Оценка" Type="int" Nullable="false" />
-          <Property Name="ДневникID" Type="int" Nullable="false" />
-          <Property Name="УрокID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Пользователь">
           <Key>
@@ -69,22 +82,21 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Наименование" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="Тип_сотрудника">
+        <EntityType Name="Тема">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ПредиетID" Type="int" Nullable="false" />
+          <Property Name="Класс" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Тип_пользователя">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Наименование" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Урок">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="КлассID" Type="int" Nullable="false" />
-          <Property Name="ПредметID" Type="int" Nullable="false" />
-          <Property Name="УчительID" Type="int" Nullable="false" />
-          <Property Name="Дата" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Ученик">
           <Key>
@@ -97,18 +109,6 @@
           <Property Name="Дата_рождения" Type="date" Nullable="false" />
           <Property Name="КлассID" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Дневник_Ученик">
-          <End Role="Ученик" Type="Self.Ученик" Multiplicity="1" />
-          <End Role="Дневник" Type="Self.Дневник" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ученик">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Дневник">
-              <PropertyRef Name="УченикID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Доступ_Класс">
           <End Role="Класс" Type="Self.Класс" Multiplicity="0..1" />
           <End Role="Доступ" Type="Self.Доступ" Multiplicity="*" />
@@ -145,6 +145,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Занятие_Кабинет">
+          <End Role="Кабинет" Type="Self.Кабинет" Multiplicity="1" />
+          <End Role="Занятие" Type="Self.Занятие" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Кабинет">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Занятие">
+              <PropertyRef Name="КабинетID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Занятие_Предмет">
+          <End Role="Предмет" Type="Self.Предмет" Multiplicity="1" />
+          <End Role="Занятие" Type="Self.Занятие" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Предмет">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Занятие">
+              <PropertyRef Name="ПредметID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Занятие_Тема">
+          <End Role="Тема" Type="Self.Тема" Multiplicity="1" />
+          <End Role="Занятие" Type="Self.Занятие" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Тема">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Занятие">
+              <PropertyRef Name="ТемаID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Занятие_ученик_Занятие">
+          <End Role="Занятие" Type="Self.Занятие" Multiplicity="1" />
+          <End Role="Занятие_ученик" Type="Self.Занятие_ученик" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Занятие">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Занятие_ученик">
+              <PropertyRef Name="ЗанятиеID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Занятие_ученик_Ученик">
+          <End Role="Ученик" Type="Self.Ученик" Multiplicity="1" />
+          <End Role="Занятие_ученик" Type="Self.Занятие_ученик" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ученик">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Занятие_ученик">
+              <PropertyRef Name="УченикID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Класс_Учитель">
           <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="0..1" />
           <End Role="Класс" Type="Self.Класс" Multiplicity="*" />
@@ -157,35 +217,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Оценка_урок_Дневник">
-          <End Role="Дневник" Type="Self.Дневник" Multiplicity="1" />
-          <End Role="Оценка_урок" Type="Self.Оценка_урок" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Дневник">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Оценка_урок">
-              <PropertyRef Name="ДневникID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Оценка_урок_Урок">
-          <End Role="Урок" Type="Self.Урок" Multiplicity="1" />
-          <End Role="Оценка_урок" Type="Self.Оценка_урок" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Урок">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Оценка_урок">
-              <PropertyRef Name="УрокID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Пользователь_Тип_сотрудника">
-          <End Role="Тип_сотрудника" Type="Self.Тип_сотрудника" Multiplicity="1" />
+          <End Role="Тип_пользователя" Type="Self.Тип_пользователя" Multiplicity="1" />
           <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Тип_сотрудника">
+            <Principal Role="Тип_пользователя">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Пользователь">
@@ -193,38 +229,38 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Урок_Класс">
-          <End Role="Класс" Type="Self.Класс" Multiplicity="1" />
-          <End Role="Урок" Type="Self.Урок" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Класс">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Урок">
-              <PropertyRef Name="КлассID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Урок_Предмет">
+        <Association Name="FK_Тема_Предмет">
           <End Role="Предмет" Type="Self.Предмет" Multiplicity="1" />
-          <End Role="Урок" Type="Self.Урок" Multiplicity="*" />
+          <End Role="Тема" Type="Self.Тема" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Предмет">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Урок">
-              <PropertyRef Name="ПредметID" />
+            <Dependent Role="Тема">
+              <PropertyRef Name="ПредиетID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Урок_Класс">
+          <End Role="Класс" Type="Self.Класс" Multiplicity="1" />
+          <End Role="Занятие" Type="Self.Занятие" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Класс">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Занятие">
+              <PropertyRef Name="КлассID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Урок_Учитель">
           <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="1" />
-          <End Role="Урок" Type="Self.Урок" Multiplicity="*" />
+          <End Role="Занятие" Type="Self.Занятие" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Пользователь">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Урок">
+            <Dependent Role="Занятие">
               <PropertyRef Name="УчительID" />
             </Dependent>
           </ReferentialConstraint>
@@ -243,19 +279,16 @@
         </Association>
         <EntityContainer Name="Хранилище journalDBModelContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Дневник" EntityType="Self.Дневник" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Доступ" EntityType="Self.Доступ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Занятие" EntityType="Self.Занятие" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Занятие_ученик" EntityType="Self.Занятие_ученик" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Кабинет" EntityType="Self.Кабинет" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Класс" EntityType="Self.Класс" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Оценка_урок" EntityType="Self.Оценка_урок" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Пользователь" EntityType="Self.Пользователь" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Предмет" EntityType="Self.Предмет" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Тип_сотрудника" EntityType="Self.Тип_сотрудника" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Урок" EntityType="Self.Урок" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Тема" EntityType="Self.Тема" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Тип_пользователя" EntityType="Self.Тип_пользователя" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ученик" EntityType="Self.Ученик" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Дневник_Ученик" Association="Self.FK_Дневник_Ученик">
-            <End Role="Ученик" EntitySet="Ученик" />
-            <End Role="Дневник" EntitySet="Дневник" />
-          </AssociationSet>
           <AssociationSet Name="FK_Доступ_Класс" Association="Self.FK_Доступ_Класс">
             <End Role="Класс" EntitySet="Класс" />
             <End Role="Доступ" EntitySet="Доступ" />
@@ -268,33 +301,45 @@
             <End Role="Предмет" EntitySet="Предмет" />
             <End Role="Доступ" EntitySet="Доступ" />
           </AssociationSet>
+          <AssociationSet Name="FK_Занятие_Кабинет" Association="Self.FK_Занятие_Кабинет">
+            <End Role="Кабинет" EntitySet="Кабинет" />
+            <End Role="Занятие" EntitySet="Занятие" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Занятие_Предмет" Association="Self.FK_Занятие_Предмет">
+            <End Role="Предмет" EntitySet="Предмет" />
+            <End Role="Занятие" EntitySet="Занятие" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Занятие_Тема" Association="Self.FK_Занятие_Тема">
+            <End Role="Тема" EntitySet="Тема" />
+            <End Role="Занятие" EntitySet="Занятие" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Занятие_ученик_Занятие" Association="Self.FK_Занятие_ученик_Занятие">
+            <End Role="Занятие" EntitySet="Занятие" />
+            <End Role="Занятие_ученик" EntitySet="Занятие_ученик" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Занятие_ученик_Ученик" Association="Self.FK_Занятие_ученик_Ученик">
+            <End Role="Ученик" EntitySet="Ученик" />
+            <End Role="Занятие_ученик" EntitySet="Занятие_ученик" />
+          </AssociationSet>
           <AssociationSet Name="FK_Класс_Учитель" Association="Self.FK_Класс_Учитель">
             <End Role="Пользователь" EntitySet="Пользователь" />
             <End Role="Класс" EntitySet="Класс" />
           </AssociationSet>
-          <AssociationSet Name="FK_Оценка_урок_Дневник" Association="Self.FK_Оценка_урок_Дневник">
-            <End Role="Дневник" EntitySet="Дневник" />
-            <End Role="Оценка_урок" EntitySet="Оценка_урок" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Оценка_урок_Урок" Association="Self.FK_Оценка_урок_Урок">
-            <End Role="Урок" EntitySet="Урок" />
-            <End Role="Оценка_урок" EntitySet="Оценка_урок" />
-          </AssociationSet>
           <AssociationSet Name="FK_Пользователь_Тип_сотрудника" Association="Self.FK_Пользователь_Тип_сотрудника">
-            <End Role="Тип_сотрудника" EntitySet="Тип_сотрудника" />
+            <End Role="Тип_пользователя" EntitySet="Тип_пользователя" />
             <End Role="Пользователь" EntitySet="Пользователь" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Тема_Предмет" Association="Self.FK_Тема_Предмет">
+            <End Role="Предмет" EntitySet="Предмет" />
+            <End Role="Тема" EntitySet="Тема" />
           </AssociationSet>
           <AssociationSet Name="FK_Урок_Класс" Association="Self.FK_Урок_Класс">
             <End Role="Класс" EntitySet="Класс" />
-            <End Role="Урок" EntitySet="Урок" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Урок_Предмет" Association="Self.FK_Урок_Предмет">
-            <End Role="Предмет" EntitySet="Предмет" />
-            <End Role="Урок" EntitySet="Урок" />
+            <End Role="Занятие" EntitySet="Занятие" />
           </AssociationSet>
           <AssociationSet Name="FK_Урок_Учитель" Association="Self.FK_Урок_Учитель">
             <End Role="Пользователь" EntitySet="Пользователь" />
-            <End Role="Урок" EntitySet="Урок" />
+            <End Role="Занятие" EntitySet="Занятие" />
           </AssociationSet>
           <AssociationSet Name="FK_Ученик_Класс" Association="Self.FK_Ученик_Класс">
             <End Role="Класс" EntitySet="Класс" />
@@ -315,14 +360,55 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="Дневник">
+        <EntityType Name="Доступ">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="УчительID" Type="Int32" />
+          <Property Name="КлассID" Type="Int32" />
+          <Property Name="ПредметID" Type="Int32" />
+          <NavigationProperty Name="Класс" Relationship="Self.FK_Доступ_Класс" FromRole="Доступ" ToRole="Класс" />
+          <NavigationProperty Name="Пользователь" Relationship="Self.FK_Доступ_Пользователь" FromRole="Доступ" ToRole="Пользователь" />
+          <NavigationProperty Name="Предмет" Relationship="Self.FK_Доступ_Предмет" FromRole="Доступ" ToRole="Предмет" />
+        </EntityType>
+        <EntityType Name="Занятие">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="КлассID" Type="Int32" Nullable="false" />
+          <Property Name="ПредметID" Type="Int32" Nullable="false" />
+          <Property Name="УчительID" Type="Int32" Nullable="false" />
+          <Property Name="Дата" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="КабинетID" Type="Int32" Nullable="false" />
+          <Property Name="ТемаID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Кабинет" Relationship="Self.FK_Занятие_Кабинет" FromRole="Занятие" ToRole="Кабинет" />
+          <NavigationProperty Name="Предмет" Relationship="Self.FK_Занятие_Предмет" FromRole="Занятие" ToRole="Предмет" />
+          <NavigationProperty Name="Тема" Relationship="Self.FK_Занятие_Тема" FromRole="Занятие" ToRole="Тема" />
+          <NavigationProperty Name="Занятие_ученик" Relationship="Self.FK_Занятие_ученик_Занятие" FromRole="Занятие" ToRole="Занятие_ученик" />
+          <NavigationProperty Name="Класс" Relationship="Self.FK_Урок_Класс" FromRole="Занятие" ToRole="Класс" />
+          <NavigationProperty Name="Пользователь" Relationship="Self.FK_Урок_Учитель" FromRole="Занятие" ToRole="Пользователь" />
+        </EntityType>
+        <EntityType Name="Занятие_ученик">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="УченикID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Ученик" Relationship="Self.FK_Дневник_Ученик" FromRole="Дневник" ToRole="Ученик" />
-          <NavigationProperty Name="Оценка_урок" Relationship="Self.FK_Оценка_урок_Дневник" FromRole="Дневник" ToRole="Оценка_урок" />
+          <Property Name="ЗанятиеID" Type="Int32" Nullable="false" />
+          <Property Name="Оценка" Type="Int32" />
+          <Property Name="Присутствие" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Занятие" Relationship="Self.FK_Занятие_ученик_Занятие" FromRole="Занятие_ученик" ToRole="Занятие" />
+          <NavigationProperty Name="Ученик" Relationship="Self.FK_Занятие_ученик_Ученик" FromRole="Занятие_ученик" ToRole="Ученик" />
+        </EntityType>
+        <EntityType Name="Кабинет">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Номер" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Занятие" Relationship="Self.FK_Занятие_Кабинет" FromRole="Кабинет" ToRole="Занятие" />
         </EntityType>
         <EntityType Name="Класс">
           <Key>
@@ -332,21 +418,10 @@
           <Property Name="Номер" Type="Int32" Nullable="false" />
           <Property Name="Префикс" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Класс_рукID" Type="Int32" />
+          <NavigationProperty Name="Доступ" Relationship="Self.FK_Доступ_Класс" FromRole="Класс" ToRole="Доступ" />
+          <NavigationProperty Name="Занятие" Relationship="Self.FK_Урок_Класс" FromRole="Класс" ToRole="Занятие" />
           <NavigationProperty Name="Пользователь" Relationship="Self.FK_Класс_Учитель" FromRole="Класс" ToRole="Пользователь" />
-          <NavigationProperty Name="Урок" Relationship="Self.FK_Урок_Класс" FromRole="Класс" ToRole="Урок" />
           <NavigationProperty Name="Ученик" Relationship="Self.FK_Ученик_Класс" FromRole="Класс" ToRole="Ученик" />
-          <NavigationProperty Name="Доступ" Relationship="journalDBModel.FK_Доступ_Класс" FromRole="Класс" ToRole="Доступ" />
-        </EntityType>
-        <EntityType Name="Оценка_урок">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Оценка" Type="Int32" Nullable="false" />
-          <Property Name="ДневникID" Type="Int32" Nullable="false" />
-          <Property Name="УрокID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Дневник" Relationship="Self.FK_Оценка_урок_Дневник" FromRole="Оценка_урок" ToRole="Дневник" />
-          <NavigationProperty Name="Урок" Relationship="Self.FK_Оценка_урок_Урок" FromRole="Оценка_урок" ToRole="Урок" />
         </EntityType>
         <EntityType Name="Пользователь">
           <Key>
@@ -360,10 +435,10 @@
           <Property Name="Пароль" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Тип" Type="Int32" Nullable="false" />
           <Property Name="Почта" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Доступ" Relationship="Self.FK_Доступ_Пользователь" FromRole="Пользователь" ToRole="Доступ" />
+          <NavigationProperty Name="Занятие" Relationship="Self.FK_Урок_Учитель" FromRole="Пользователь" ToRole="Занятие" />
           <NavigationProperty Name="Класс" Relationship="Self.FK_Класс_Учитель" FromRole="Пользователь" ToRole="Класс" />
-          <NavigationProperty Name="Тип_сотрудника" Relationship="Self.FK_Пользователь_Тип_сотрудника" FromRole="Пользователь" ToRole="Тип_сотрудника" />
-          <NavigationProperty Name="Урок" Relationship="Self.FK_Урок_Учитель" FromRole="Пользователь" ToRole="Урок" />
-          <NavigationProperty Name="Доступ" Relationship="journalDBModel.FK_Доступ_Пользователь" FromRole="Пользователь" ToRole="Доступ" />
+          <NavigationProperty Name="Тип_пользователя" Relationship="Self.FK_Пользователь_Тип_сотрудника" FromRole="Пользователь" ToRole="Тип_пользователя" />
         </EntityType>
         <EntityType Name="Предмет">
           <Key>
@@ -371,30 +446,28 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Урок" Relationship="Self.FK_Урок_Предмет" FromRole="Предмет" ToRole="Урок" />
-          <NavigationProperty Name="Доступ" Relationship="journalDBModel.FK_Доступ_Предмет" FromRole="Предмет" ToRole="Доступ" />
+          <NavigationProperty Name="Доступ" Relationship="Self.FK_Доступ_Предмет" FromRole="Предмет" ToRole="Доступ" />
+          <NavigationProperty Name="Занятие" Relationship="Self.FK_Занятие_Предмет" FromRole="Предмет" ToRole="Занятие" />
+          <NavigationProperty Name="Тема" Relationship="Self.FK_Тема_Предмет" FromRole="Предмет" ToRole="Тема" />
         </EntityType>
-        <EntityType Name="Тип_сотрудника">
+        <EntityType Name="Тема">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ПредиетID" Type="Int32" Nullable="false" />
+          <Property Name="Класс" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Занятие" Relationship="Self.FK_Занятие_Тема" FromRole="Тема" ToRole="Занятие" />
+          <NavigationProperty Name="Предмет" Relationship="Self.FK_Тема_Предмет" FromRole="Тема" ToRole="Предмет" />
+        </EntityType>
+        <EntityType Name="Тип_пользователя">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Пользователь" Relationship="Self.FK_Пользователь_Тип_сотрудника" FromRole="Тип_сотрудника" ToRole="Пользователь" />
-        </EntityType>
-        <EntityType Name="Урок">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="КлассID" Type="Int32" Nullable="false" />
-          <Property Name="ПредметID" Type="Int32" Nullable="false" />
-          <Property Name="УчительID" Type="Int32" Nullable="false" />
-          <Property Name="Дата" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Класс" Relationship="Self.FK_Урок_Класс" FromRole="Урок" ToRole="Класс" />
-          <NavigationProperty Name="Оценка_урок" Relationship="Self.FK_Оценка_урок_Урок" FromRole="Урок" ToRole="Оценка_урок" />
-          <NavigationProperty Name="Пользователь" Relationship="Self.FK_Урок_Учитель" FromRole="Урок" ToRole="Пользователь" />
-          <NavigationProperty Name="Предмет" Relationship="Self.FK_Урок_Предмет" FromRole="Урок" ToRole="Предмет" />
+          <NavigationProperty Name="Пользователь" Relationship="Self.FK_Пользователь_Тип_сотрудника" FromRole="Тип_пользователя" ToRole="Пользователь" />
         </EntityType>
         <EntityType Name="Ученик">
           <Key>
@@ -406,30 +479,126 @@
           <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Дата_рождения" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="КлассID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Дневник" Relationship="Self.FK_Дневник_Ученик" FromRole="Ученик" ToRole="Дневник" />
+          <NavigationProperty Name="Занятие_ученик" Relationship="Self.FK_Занятие_ученик_Ученик" FromRole="Ученик" ToRole="Занятие_ученик" />
           <NavigationProperty Name="Класс" Relationship="Self.FK_Ученик_Класс" FromRole="Ученик" ToRole="Класс" />
         </EntityType>
-        <Association Name="FK_Дневник_Ученик">
+        <Association Name="FK_Доступ_Класс">
+          <End Role="Класс" Type="Self.Класс" Multiplicity="0..1" />
+          <End Role="Доступ" Type="Self.Доступ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Класс">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Доступ">
+              <PropertyRef Name="КлассID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Доступ_Пользователь">
+          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="0..1" />
+          <End Role="Доступ" Type="Self.Доступ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователь">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Доступ">
+              <PropertyRef Name="УчительID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Доступ_Предмет">
+          <End Role="Предмет" Type="Self.Предмет" Multiplicity="0..1" />
+          <End Role="Доступ" Type="Self.Доступ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Предмет">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Доступ">
+              <PropertyRef Name="ПредметID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Занятие_Кабинет">
+          <End Role="Кабинет" Type="Self.Кабинет" Multiplicity="1" />
+          <End Role="Занятие" Type="Self.Занятие" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Кабинет">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Занятие">
+              <PropertyRef Name="КабинетID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Занятие_Предмет">
+          <End Role="Предмет" Type="Self.Предмет" Multiplicity="1" />
+          <End Role="Занятие" Type="Self.Занятие" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Предмет">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Занятие">
+              <PropertyRef Name="ПредметID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Занятие_Тема">
+          <End Role="Тема" Type="Self.Тема" Multiplicity="1" />
+          <End Role="Занятие" Type="Self.Занятие" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Тема">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Занятие">
+              <PropertyRef Name="ТемаID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Занятие_ученик_Занятие">
+          <End Role="Занятие" Type="Self.Занятие" Multiplicity="1" />
+          <End Role="Занятие_ученик" Type="Self.Занятие_ученик" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Занятие">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Занятие_ученик">
+              <PropertyRef Name="ЗанятиеID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Урок_Класс">
+          <End Role="Класс" Type="Self.Класс" Multiplicity="1" />
+          <End Role="Занятие" Type="Self.Занятие" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Класс">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Занятие">
+              <PropertyRef Name="КлассID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Урок_Учитель">
+          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="1" />
+          <End Role="Занятие" Type="Self.Занятие" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователь">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Занятие">
+              <PropertyRef Name="УчительID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Занятие_ученик_Ученик">
           <End Role="Ученик" Type="Self.Ученик" Multiplicity="1" />
-          <End Role="Дневник" Type="Self.Дневник" Multiplicity="*" />
+          <End Role="Занятие_ученик" Type="Self.Занятие_ученик" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ученик">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Дневник">
+            <Dependent Role="Занятие_ученик">
               <PropertyRef Name="УченикID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Оценка_урок_Дневник">
-          <End Role="Дневник" Type="Self.Дневник" Multiplicity="1" />
-          <End Role="Оценка_урок" Type="Self.Оценка_урок" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Дневник">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Оценка_урок">
-              <PropertyRef Name="ДневникID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -445,18 +614,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Урок_Класс">
-          <End Role="Класс" Type="Self.Класс" Multiplicity="1" />
-          <End Role="Урок" Type="Self.Урок" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Класс">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Урок">
-              <PropertyRef Name="КлассID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Ученик_Класс">
           <End Role="Класс" Type="Self.Класс" Multiplicity="1" />
           <End Role="Ученик" Type="Self.Ученик" Multiplicity="*" />
@@ -469,23 +626,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Оценка_урок_Урок">
-          <End Role="Урок" Type="Self.Урок" Multiplicity="1" />
-          <End Role="Оценка_урок" Type="Self.Оценка_урок" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Урок">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Оценка_урок">
-              <PropertyRef Name="УрокID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Пользователь_Тип_сотрудника">
-          <End Role="Тип_сотрудника" Type="Self.Тип_сотрудника" Multiplicity="1" />
+          <End Role="Тип_пользователя" Type="Self.Тип_пользователя" Multiplicity="1" />
           <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Тип_сотрудника">
+            <Principal Role="Тип_пользователя">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Пользователь">
@@ -493,138 +638,87 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Урок_Учитель">
-          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="1" />
-          <End Role="Урок" Type="Self.Урок" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Пользователь">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Урок">
-              <PropertyRef Name="УчительID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Урок_Предмет">
+        <Association Name="FK_Тема_Предмет">
           <End Role="Предмет" Type="Self.Предмет" Multiplicity="1" />
-          <End Role="Урок" Type="Self.Урок" Multiplicity="*" />
+          <End Role="Тема" Type="Self.Тема" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Предмет">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Урок">
-              <PropertyRef Name="ПредметID" />
+            <Dependent Role="Тема">
+              <PropertyRef Name="ПредиетID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="journalDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="Дневник" EntityType="Self.Дневник" />
+          <EntitySet Name="Доступ" EntityType="Self.Доступ" />
+          <EntitySet Name="Занятие" EntityType="Self.Занятие" />
+          <EntitySet Name="Занятие_ученик" EntityType="Self.Занятие_ученик" />
+          <EntitySet Name="Кабинет" EntityType="Self.Кабинет" />
           <EntitySet Name="Класс" EntityType="Self.Класс" />
-          <EntitySet Name="Оценка_урок" EntityType="Self.Оценка_урок" />
           <EntitySet Name="Пользователь" EntityType="Self.Пользователь" />
           <EntitySet Name="Предмет" EntityType="Self.Предмет" />
-          <EntitySet Name="Тип_сотрудника" EntityType="Self.Тип_сотрудника" />
-          <EntitySet Name="Урок" EntityType="Self.Урок" />
+          <EntitySet Name="Тема" EntityType="Self.Тема" />
+          <EntitySet Name="Тип_пользователя" EntityType="Self.Тип_пользователя" />
           <EntitySet Name="Ученик" EntityType="Self.Ученик" />
-          <AssociationSet Name="FK_Дневник_Ученик" Association="Self.FK_Дневник_Ученик">
-            <End Role="Ученик" EntitySet="Ученик" />
-            <End Role="Дневник" EntitySet="Дневник" />
+          <AssociationSet Name="FK_Доступ_Класс" Association="Self.FK_Доступ_Класс">
+            <End Role="Класс" EntitySet="Класс" />
+            <End Role="Доступ" EntitySet="Доступ" />
           </AssociationSet>
-          <AssociationSet Name="FK_Оценка_урок_Дневник" Association="Self.FK_Оценка_урок_Дневник">
-            <End Role="Дневник" EntitySet="Дневник" />
-            <End Role="Оценка_урок" EntitySet="Оценка_урок" />
+          <AssociationSet Name="FK_Доступ_Пользователь" Association="Self.FK_Доступ_Пользователь">
+            <End Role="Пользователь" EntitySet="Пользователь" />
+            <End Role="Доступ" EntitySet="Доступ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Доступ_Предмет" Association="Self.FK_Доступ_Предмет">
+            <End Role="Предмет" EntitySet="Предмет" />
+            <End Role="Доступ" EntitySet="Доступ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Занятие_Кабинет" Association="Self.FK_Занятие_Кабинет">
+            <End Role="Кабинет" EntitySet="Кабинет" />
+            <End Role="Занятие" EntitySet="Занятие" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Занятие_Предмет" Association="Self.FK_Занятие_Предмет">
+            <End Role="Предмет" EntitySet="Предмет" />
+            <End Role="Занятие" EntitySet="Занятие" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Занятие_Тема" Association="Self.FK_Занятие_Тема">
+            <End Role="Тема" EntitySet="Тема" />
+            <End Role="Занятие" EntitySet="Занятие" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Занятие_ученик_Занятие" Association="Self.FK_Занятие_ученик_Занятие">
+            <End Role="Занятие" EntitySet="Занятие" />
+            <End Role="Занятие_ученик" EntitySet="Занятие_ученик" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Урок_Класс" Association="Self.FK_Урок_Класс">
+            <End Role="Класс" EntitySet="Класс" />
+            <End Role="Занятие" EntitySet="Занятие" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Урок_Учитель" Association="Self.FK_Урок_Учитель">
+            <End Role="Пользователь" EntitySet="Пользователь" />
+            <End Role="Занятие" EntitySet="Занятие" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Занятие_ученик_Ученик" Association="Self.FK_Занятие_ученик_Ученик">
+            <End Role="Ученик" EntitySet="Ученик" />
+            <End Role="Занятие_ученик" EntitySet="Занятие_ученик" />
           </AssociationSet>
           <AssociationSet Name="FK_Класс_Учитель" Association="Self.FK_Класс_Учитель">
             <End Role="Пользователь" EntitySet="Пользователь" />
             <End Role="Класс" EntitySet="Класс" />
           </AssociationSet>
-          <AssociationSet Name="FK_Урок_Класс" Association="Self.FK_Урок_Класс">
-            <End Role="Класс" EntitySet="Класс" />
-            <End Role="Урок" EntitySet="Урок" />
-          </AssociationSet>
           <AssociationSet Name="FK_Ученик_Класс" Association="Self.FK_Ученик_Класс">
             <End Role="Класс" EntitySet="Класс" />
             <End Role="Ученик" EntitySet="Ученик" />
           </AssociationSet>
-          <AssociationSet Name="FK_Оценка_урок_Урок" Association="Self.FK_Оценка_урок_Урок">
-            <End Role="Урок" EntitySet="Урок" />
-            <End Role="Оценка_урок" EntitySet="Оценка_урок" />
-          </AssociationSet>
           <AssociationSet Name="FK_Пользователь_Тип_сотрудника" Association="Self.FK_Пользователь_Тип_сотрудника">
-            <End Role="Тип_сотрудника" EntitySet="Тип_сотрудника" />
+            <End Role="Тип_пользователя" EntitySet="Тип_пользователя" />
             <End Role="Пользователь" EntitySet="Пользователь" />
           </AssociationSet>
-          <AssociationSet Name="FK_Урок_Учитель" Association="Self.FK_Урок_Учитель">
-            <End Role="Пользователь" EntitySet="Пользователь" />
-            <End Role="Урок" EntitySet="Урок" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Урок_Предмет" Association="Self.FK_Урок_Предмет">
+          <AssociationSet Name="FK_Тема_Предмет" Association="Self.FK_Тема_Предмет">
             <End Role="Предмет" EntitySet="Предмет" />
-            <End Role="Урок" EntitySet="Урок" />
-          </AssociationSet>
-          <EntitySet Name="Доступ" EntityType="journalDBModel.Доступ" />
-          <AssociationSet Name="FK_Доступ_Класс" Association="journalDBModel.FK_Доступ_Класс">
-            <End Role="Класс" EntitySet="Класс" />
-            <End Role="Доступ" EntitySet="Доступ" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Доступ_Пользователь" Association="journalDBModel.FK_Доступ_Пользователь">
-            <End Role="Пользователь" EntitySet="Пользователь" />
-            <End Role="Доступ" EntitySet="Доступ" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Доступ_Предмет" Association="journalDBModel.FK_Доступ_Предмет">
-            <End Role="Предмет" EntitySet="Предмет" />
-            <End Role="Доступ" EntitySet="Доступ" />
+            <End Role="Тема" EntitySet="Тема" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Доступ">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="УчительID" Type="Int32" />
-          <Property Name="КлассID" Type="Int32" />
-          <Property Name="ПредметID" Type="Int32" />
-          <NavigationProperty Name="Класс" Relationship="journalDBModel.FK_Доступ_Класс" FromRole="Доступ" ToRole="Класс" />
-          <NavigationProperty Name="Пользователь" Relationship="journalDBModel.FK_Доступ_Пользователь" FromRole="Доступ" ToRole="Пользователь" />
-          <NavigationProperty Name="Предмет" Relationship="journalDBModel.FK_Доступ_Предмет" FromRole="Доступ" ToRole="Предмет" />
-        </EntityType>
-        <Association Name="FK_Доступ_Класс">
-          <End Type="journalDBModel.Класс" Role="Класс" Multiplicity="0..1" />
-          <End Type="journalDBModel.Доступ" Role="Доступ" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Класс">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Доступ">
-              <PropertyRef Name="КлассID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Доступ_Пользователь">
-          <End Type="journalDBModel.Пользователь" Role="Пользователь" Multiplicity="0..1" />
-          <End Type="journalDBModel.Доступ" Role="Доступ" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Пользователь">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Доступ">
-              <PropertyRef Name="УчительID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Доступ_Предмет">
-          <End Type="journalDBModel.Предмет" Role="Предмет" Multiplicity="0..1" />
-          <End Type="journalDBModel.Доступ" Role="Доступ" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Предмет">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Доступ">
-              <PropertyRef Name="ПредметID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -642,11 +736,45 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Дневник">
-            <EntityTypeMapping TypeName="journalDBModel.Дневник">
-              <MappingFragment StoreEntitySet="Дневник">
+          <EntitySetMapping Name="Доступ">
+            <EntityTypeMapping TypeName="journalDBModel.Доступ">
+              <MappingFragment StoreEntitySet="Доступ">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="УчительID" ColumnName="УчительID" />
+                <ScalarProperty Name="КлассID" ColumnName="КлассID" />
+                <ScalarProperty Name="ПредметID" ColumnName="ПредметID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Занятие">
+            <EntityTypeMapping TypeName="journalDBModel.Занятие">
+              <MappingFragment StoreEntitySet="Занятие">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="КлассID" ColumnName="КлассID" />
+                <ScalarProperty Name="ПредметID" ColumnName="ПредметID" />
+                <ScalarProperty Name="УчительID" ColumnName="УчительID" />
+                <ScalarProperty Name="Дата" ColumnName="Дата" />
+                <ScalarProperty Name="КабинетID" ColumnName="КабинетID" />
+                <ScalarProperty Name="ТемаID" ColumnName="ТемаID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Занятие_ученик">
+            <EntityTypeMapping TypeName="journalDBModel.Занятие_ученик">
+              <MappingFragment StoreEntitySet="Занятие_ученик">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="УченикID" ColumnName="УченикID" />
+                <ScalarProperty Name="ЗанятиеID" ColumnName="ЗанятиеID" />
+                <ScalarProperty Name="Оценка" ColumnName="Оценка" />
+                <ScalarProperty Name="Присутствие" ColumnName="Присутствие" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Кабинет">
+            <EntityTypeMapping TypeName="journalDBModel.Кабинет">
+              <MappingFragment StoreEntitySet="Кабинет">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Номер" ColumnName="Номер" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -657,16 +785,6 @@
                 <ScalarProperty Name="Номер" ColumnName="Номер" />
                 <ScalarProperty Name="Префикс" ColumnName="Префикс" />
                 <ScalarProperty Name="Класс_рукID" ColumnName="Класс_рукID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Оценка_урок">
-            <EntityTypeMapping TypeName="journalDBModel.Оценка_урок">
-              <MappingFragment StoreEntitySet="Оценка_урок">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Оценка" ColumnName="Оценка" />
-                <ScalarProperty Name="ДневникID" ColumnName="ДневникID" />
-                <ScalarProperty Name="УрокID" ColumnName="УрокID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -692,22 +810,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Тип_сотрудника">
-            <EntityTypeMapping TypeName="journalDBModel.Тип_сотрудника">
-              <MappingFragment StoreEntitySet="Тип_сотрудника">
+          <EntitySetMapping Name="Тема">
+            <EntityTypeMapping TypeName="journalDBModel.Тема">
+              <MappingFragment StoreEntitySet="Тема">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="ПредиетID" ColumnName="ПредиетID" />
+                <ScalarProperty Name="Класс" ColumnName="Класс" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Урок">
-            <EntityTypeMapping TypeName="journalDBModel.Урок">
-              <MappingFragment StoreEntitySet="Урок">
+          <EntitySetMapping Name="Тип_пользователя">
+            <EntityTypeMapping TypeName="journalDBModel.Тип_пользователя">
+              <MappingFragment StoreEntitySet="Тип_пользователя">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="КлассID" ColumnName="КлассID" />
-                <ScalarProperty Name="ПредметID" ColumnName="ПредметID" />
-                <ScalarProperty Name="УчительID" ColumnName="УчительID" />
-                <ScalarProperty Name="Дата" ColumnName="Дата" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -720,16 +837,6 @@
                 <ScalarProperty Name="Отчество" ColumnName="Отчество" />
                 <ScalarProperty Name="Дата_рождения" ColumnName="Дата_рождения" />
                 <ScalarProperty Name="КлассID" ColumnName="КлассID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Доступ">
-            <EntityTypeMapping TypeName="journalDBModel.Доступ">
-              <MappingFragment StoreEntitySet="Доступ">
-                <ScalarProperty Name="ПредметID" ColumnName="ПредметID" />
-                <ScalarProperty Name="КлассID" ColumnName="КлассID" />
-                <ScalarProperty Name="УчительID" ColumnName="УчительID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -53,8 +53,6 @@ namespace journalProject.ProjectWin
         {
             MessageBox.Show("Нажмите ОК чтобы подтвердить удаление", "Удаление", MessageBoxButton.OKCancel);
             var rem = DB.Connect.connection.Ученик.FirstOrDefault(i => i.ID == ProjectClasses.TeacherClass.schoID);
-            var remJor = DB.Connect.connection.Дневник.FirstOrDefault(i => i.УченикID == rem.ID);
-            DB.Connect.connection.Дневник.Remove(remJor);
             DB.Connect.connection.Ученик.Remove(rem);
             DB.Connect.connection.SaveChanges();
         }

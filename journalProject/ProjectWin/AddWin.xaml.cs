@@ -33,12 +33,9 @@ namespace journalProject.ProjectWin
                 addUch.Имя = _nameBox.Text;
                 addUch.Отчество = _patrBox.Text;
                 addUch.Дата_рождения = Convert.ToDateTime(_birthDate.Text);
-                var clasUch = DB.Connect.connection.Класс.FirstOrDefault(i => i.УчительID == ProjectClasses.TeacherClass.id);
+                var clasUch = DB.Connect.connection.Класс.FirstOrDefault(i => i.Класс_рукID == ProjectClasses.TeacherClass.id);
                 addUch.КлассID = clasUch.ID;
                 DB.Connect.connection.Ученик.Add(addUch);
-                var journal = new DB.Дневник();
-                journal.УченикID = addUch.ID;
-                DB.Connect.connection.Дневник.Add(journal);
                 DB.Connect.connection.SaveChanges();
                 MessageBox.Show("Ученик добавлен");
             }

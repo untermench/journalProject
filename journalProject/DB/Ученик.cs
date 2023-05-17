@@ -17,7 +17,7 @@ namespace journalProject.DB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Ученик()
         {
-            this.Дневник = new HashSet<Дневник>();
+            this.Занятие_ученик = new HashSet<Занятие_ученик>();
         }
     
         public int ID { get; set; }
@@ -28,7 +28,7 @@ namespace journalProject.DB
         public int КлассID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Дневник> Дневник { get; set; }
+        public virtual ICollection<Занятие_ученик> Занятие_ученик { get; set; }
         public virtual Класс Класс { get; set; }
     }
 }

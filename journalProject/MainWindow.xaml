@@ -5,56 +5,71 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:journalProject" WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
-        
-        Title="MainWindow" Height="586" Width="548" MaxHeight="850" MaxWidth="1200" MinHeight="450" MinWidth="600" ResizeMode="CanMinimize">
+        WindowStyle="None" 
+        Background="Transparent" AllowsTransparency="True"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        Title="Окно авторизации" Height="586" Width="548" MaxHeight="850" MaxWidth="1200" MinHeight="450" MinWidth="500" ResizeMode="CanMinimize">
+    <Border CornerRadius="8">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="5" Direction="360" RenderingBias="Performance" ShadowDepth="4" Color="#FFC5C5C5"/>
+        </Border.Effect>
+        <Grid Background="#f3f3f3">
+            <StackPanel Grid.Row="0" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0" Height="30" Orientation="Horizontal" FlowDirection="RightToLeft">
+                <Button x:Name="btnClose" Style="{StaticResource IconButtonsStyle}" Content="{DynamicResource close}" Click="btnClose_Click" Tag="IsCloseButton" Cursor="Hand"/>
+                <Button x:Name="btnMinimize" Style="{DynamicResource IconButtonsStyle}" Content="{DynamicResource minimize}" Click="btnMinimize_Click"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
 
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
-                <GradientStop Color="#FF7CB3E6"/>
-                <GradientStop Color="#FFBFDAF1" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+                <Border CornerRadius="30" Margin="0,50,0,20" Height="62" Width="324">
+                    <Border.Background>
+                        <SolidColorBrush Color="#FF4C7BA0" Opacity="0.2"/>
+                    </Border.Background>
+                    <TextBlock Foreground="White" FontSize="45" Text="Авторизация" Margin="0,1,0,0" FontFamily="Sitka Heading" HorizontalAlignment="Center" FontWeight="Normal" TextDecorations="{x:Null}" FontStyle="Normal" VerticalAlignment="Bottom"/>
 
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                </Border>
 
-            <Border CornerRadius="30" Margin="0,20,0,20" Height="62" Width="324">
-                <Border.Background>
-                    <SolidColorBrush Color="Black" Opacity="0.2"/>
-                </Border.Background>
-                <TextBlock Foreground="White" FontSize="45" Text="Авторизация" Margin="0,1,0,0" FontFamily="Sitka Heading" HorizontalAlignment="Center" FontWeight="Normal" TextDecorations="{x:Null}" FontStyle="Normal"/>
+                <Border CornerRadius="10" BorderBrush="#f9f9f9" Background="White" BorderThickness="1" Width="367" Height="371" >
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="360" RenderingBias="Performance" ShadowDepth="2" Color="#FFC5C5C5"/>
+                    </Border.Effect>
+                    <StackPanel>
 
-            </Border>
-
-            <Border CornerRadius="10" BorderBrush="#A668D5" Background="White" BorderThickness="1" Width="367" Height="371" >
-
-                <StackPanel>
-
-                    <StackPanel Orientation="Vertical" Margin="0,55,0,15">
-                        <TextBlock FontSize="18" Text="Логин" FontFamily="San Francisco Pro Display" Foreground="#A668D5" Width="290" Margin="6,0,0,0"/>
-                        <TextBox Text="" x:Name="_logBox" FontSize="22" FontFamily="San Francisco Pro Display" Width="290" Height="30" BorderThickness="0,0,0,2" TextAlignment="Left" FontStyle="Normal" TextWrapping="NoWrap"/>
+                        <StackPanel Orientation="Vertical" Margin="0,55,0,15">
+                            <TextBlock FontSize="18" Text="Логин" FontFamily="San Francisco Pro Display" Foreground="#A668D5" Width="290" Margin="6,0,0,0"/>
+                            <TextBox Text="" x:Name="_logBox" FontSize="22" FontFamily="San Francisco Pro Display" Width="290" Height="30" BorderThickness="0,0,0,2" TextAlignment="Left" FontStyle="Normal" TextWrapping="NoWrap"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Foreground="#A668D5" FontSize="18" Text="Пароль" FontFamily="San Francisco Pro Display" Width="290" Margin="14,0,8,0"/>
+                            <PasswordBox x:Name="_pasBox" FontSize="22" FontFamily="San Francisco Pro Display" Width="290" Height="30" BorderThickness="0,0,0,2"/>
+                        </StackPanel>
+                        <CheckBox Width="290" Foreground="#A668D5" x:Name="_rememberMe" FontSize="15" FontFamily="San Francisco Pro Display" Content="Запомнить меня" Margin="40,30,0,-5" HorizontalAlignment="Left"/>
+                        <Button  Background="#9440D5" Foreground="White" x:Name="loginButton" Height="36"  FontSize="24" FontFamily="San Francisco Pro Display" Content="Вход" Width="142" Margin="0,50,0,0" Click="loginButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Label HorizontalAlignment="Center">
+                            <Hyperlink x:Name="ResetPasswordButton" Click="ResetPasswordButton_Click" Cursor="Hand">
+                                Восстановить пароль
+                            </Hyperlink>
+                        </Label>
                     </StackPanel>
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Foreground="#A668D5" FontSize="18" Text="Пароль" FontFamily="San Francisco Pro Display" Width="290" Margin="14,0,8,0"/>
-                        <PasswordBox x:Name="_pasBox" FontSize="22" FontFamily="San Francisco Pro Display" Width="290" Height="30" BorderThickness="0,0,0,2"/>
-                    </StackPanel>
-                    <CheckBox Width="290" Foreground="#A668D5" x:Name="_rememberMe" FontSize="15" FontFamily="San Francisco Pro Display" Content="Запомнить меня" Margin="40,30,0,-5" HorizontalAlignment="Left"/>
-                    <Button  Background="#9440D5" Foreground="White" x:Name="loginButton" Height="40"  FontSize="26" FontFamily="San Francisco Pro Display" Content="Вход" Width="120" Margin="0,50,0,0" Click="loginButton_Click"/>
-                </StackPanel>
 
-            </Border>
+                </Border>
 
-        </StackPanel>
+            </StackPanel>
 
-        <ListView x:Name="hren" Margin="0,0,518,298" Visibility="Hidden">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Логин" DisplayMemberBinding="{Binding Логин}"/>
-                    <GridViewColumn Header="Пароль" DisplayMemberBinding="{Binding Пароль}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+            <ListView x:Name="hren" Margin="0,0,518,298" Visibility="Hidden">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Логин" DisplayMemberBinding="{Binding Логин}"/>
+                        <GridViewColumn Header="Пароль" DisplayMemberBinding="{Binding Пароль}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
 
-    </Grid>
-
+        </Grid>
+    </Border>
 </Window>

@@ -24,57 +24,53 @@ namespace journalProject.ProjectWin
             InitializeComponent();
         }
 
-        private void Sidebar_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            try
+            this.DragMove();
+        }
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void btnRestore_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Normal)
+                WindowState = WindowState.Maximized;
+            else
+                WindowState = WindowState.Normal;
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void MyClasRB_Checked(object sender, RoutedEventArgs e)
+        {
+            var myclass = DB.Connect.connection.Класс.FirstOrDefault(i => i.Класс_рукID == ProjectClasses.TeacherClass.id);
+            if (myclass != null)
             {
-                var selected = Sidebar.SelectedItem as NavButton;
-
-                
-
-                if(selected.NavLink.ToString() == "/ProjectPages/MyClassPage.xaml")
-                {
-                    var myclass = DB.Connect.connection.Класс.FirstOrDefault(i => i.Класс_рукID == ProjectClasses.TeacherClass.id);
-                    if (myclass != null)
-                    {
-                        pagesFrame.Navigate(new ProjectPages.MyClassPage());
-                    }
-                    else
-                    {
-                        MessageBox.Show("Класс не найден");
-                    }
-                }
-                else
-                {
-                    pagesFrame.Navigate(selected.NavLink);
-                }
+                PagesFrame.Navigate(new ProjectPages.MyClassPage());
             }
-            catch
+            else
             {
-
+                MessageBox.Show("Класс не найден");
             }
         }
 
-        private void NavButton_Selected(object sender, RoutedEventArgs e)
+        private void MyCabinetRB_Checked(object sender, RoutedEventArgs e)
+        {
+            MyCabinetRB.IsChecked = false;
+            SettingsWin win = new SettingsWin();
+            win.ShowDialog();
+        }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow win = new MainWindow();
             win.Show();
             this.Close();
         }
-
-        //private void classbutton_click(object sender, routedeventargs e)
-        //{
-        //    var myclass = db.connect.connection.класс.firstordefault(i => i.учительid == projectclasses.teacherclass.id);
-        //    if (myclass != null)
-        //    {
-        //        pagesframe.visibility = visibility.visible;
-        //        pagesframe.navigate(new projectpages.myclasspage());
-        //    }
-        //    else
-        //    {
-        //        messagebox.show("класс не найден");
-        //    }
-        //}
-
     }
 }

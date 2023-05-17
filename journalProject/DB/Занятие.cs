@@ -12,27 +12,28 @@ namespace journalProject.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Класс
+    public partial class Занятие
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Класс()
+        public Занятие()
         {
-            this.Доступ = new HashSet<Доступ>();
-            this.Занятие = new HashSet<Занятие>();
-            this.Ученик = new HashSet<Ученик>();
+            this.Занятие_ученик = new HashSet<Занятие_ученик>();
         }
     
         public int ID { get; set; }
-        public int Номер { get; set; }
-        public string Префикс { get; set; }
-        public Nullable<int> Класс_рукID { get; set; }
+        public int КлассID { get; set; }
+        public int ПредметID { get; set; }
+        public int УчительID { get; set; }
+        public System.DateTime Дата { get; set; }
+        public int КабинетID { get; set; }
+        public int ТемаID { get; set; }
     
+        public virtual Кабинет Кабинет { get; set; }
+        public virtual Предмет Предмет { get; set; }
+        public virtual Тема Тема { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Доступ> Доступ { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Занятие> Занятие { get; set; }
+        public virtual ICollection<Занятие_ученик> Занятие_ученик { get; set; }
+        public virtual Класс Класс { get; set; }
         public virtual Пользователь Пользователь { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ученик> Ученик { get; set; }
     }
 }

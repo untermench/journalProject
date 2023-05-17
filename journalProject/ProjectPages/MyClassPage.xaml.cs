@@ -23,7 +23,7 @@ namespace journalProject.ProjectPages
         public MyClassPage()
         {
             InitializeComponent();
-            var myclass = DB.Connect.connection.Класс.FirstOrDefault(i => i.УчительID == ProjectClasses.TeacherClass.id);
+            var myclass = DB.Connect.connection.Класс.FirstOrDefault(i => i.Класс_рукID == ProjectClasses.TeacherClass.id);
             classView.ItemsSource = DB.Connect.connection.Ученик.Where(i => i.КлассID == myclass.ID).ToList();
         }
 
@@ -42,7 +42,7 @@ namespace journalProject.ProjectPages
 
         private void refreshButton_Click(object sender, RoutedEventArgs e)
         {
-            var myclass = DB.Connect.connection.Класс.FirstOrDefault(i => i.УчительID == ProjectClasses.TeacherClass.id);
+            var myclass = DB.Connect.connection.Класс.FirstOrDefault(i => i.Класс_рукID == ProjectClasses.TeacherClass.id);
             classView.ItemsSource = DB.Connect.connection.Ученик.Where(i => i.КлассID == myclass.ID).ToList();
         }
 

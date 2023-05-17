@@ -64,6 +64,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Assets\Icons\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -91,16 +95,19 @@
     <Compile Include="DB\sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="DB\Дневник.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="DB\Доступ.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="DB\Класс.cs">
+    <Compile Include="DB\Занятие.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="DB\Оценка_урок.cs">
+    <Compile Include="DB\Занятие_ученик.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Кабинет.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Класс.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\Пользователь.cs">
@@ -109,10 +116,10 @@
     <Compile Include="DB\Предмет.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="DB\Тип_сотрудника.cs">
+    <Compile Include="DB\Тема.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="DB\Урок.cs">
+    <Compile Include="DB\Тип_пользователя.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\Ученик.cs">
@@ -123,10 +130,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ProjectPages\MyClassPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ProjectPages\TeacherAccountPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -142,19 +145,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\Generic.xaml">
+    <Page Include="ProjectWin\ResetPasswordWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProjectWin\SettingsWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\MainStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\LightTheme.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NavButton.cs" />
     <Compile Include="ProjectClasses\TeacherClass.cs" />
     <Compile Include="ProjectPages\MyClassPage.xaml.cs">
       <DependentUpon>MyClassPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ProjectPages\TeacherAccountPage.xaml.cs">
-      <DependentUpon>TeacherAccountPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProjectWin\AddWin.xaml.cs">
       <DependentUpon>AddWin.xaml</DependentUpon>
@@ -164,6 +175,12 @@
     </Compile>
     <Compile Include="ProjectWin\FrameWin.xaml.cs">
       <DependentUpon>FrameWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectWin\ResetPasswordWin.xaml.cs">
+      <DependentUpon>ResetPasswordWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectWin\SettingsWin.xaml.cs">
+      <DependentUpon>SettingsWin.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -202,6 +219,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="account-avatar-head-svgrepo-com.png" />
     <Content Include="DB\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -213,5 +231,6 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -23,27 +23,60 @@ namespace journalProject
         public MainWindow()
         {
             InitializeComponent();
-            hren.ItemsSource = DB.Connect.connection.Учитель.ToList();
+            hren.ItemsSource = DB.Connect.connection.Пользователь.ToList();
         }
 
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var log = DB.Connect.connection.Учитель.FirstOrDefault(i => i.Логин == _logBox.Text.TrimEnd().TrimStart() && i.Пароль == _pasBox.Password.TrimEnd().TrimStart());
+                var log = DB.Connect.connection.Пользователь.FirstOrDefault(i => i.Логин == _logBox.Text.TrimEnd().TrimStart() && i.Пароль == _pasBox.Password.TrimEnd().TrimStart());
                 if (log != null)
                 {
                     ProjectClasses.TeacherClass.id = log.ID;
-                    ProjectWin.FrameWin win = new ProjectWin.FrameWin();
-                    win.Show();
-                    Close();
+                    switch (log.Тип)
+                    {
+                        case 1:
+                            {
+                                break;
+                            }
+
+                        case 2:
+                            {
+                                ProjectWin.FrameWin win = new ProjectWin.FrameWin();
+                                win.Show();
+                                Close();
+                                break;
+                            }
+                    }
                 }
                 else MessageBox.Show("Указаны неверные данные");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка");
             }
+        }
+
+        private void ResetPasswordButton_Click(object sender, RoutedEventArgs e)
+        {
+            ProjectWin.ResetPasswordWin win = new ProjectWin.ResetPasswordWin();
+            win.ShowDialog();
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
         }
     }
 }

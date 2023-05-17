@@ -17,9 +17,9 @@ namespace journalProject.DB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Пользователь()
         {
-            this.Класс = new HashSet<Класс>();
-            this.Урок = new HashSet<Урок>();
             this.Доступ = new HashSet<Доступ>();
+            this.Занятие = new HashSet<Занятие>();
+            this.Класс = new HashSet<Класс>();
         }
     
         public int ID { get; set; }
@@ -32,11 +32,11 @@ namespace journalProject.DB
         public string Почта { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Класс> Класс { get; set; }
-        public virtual Тип_сотрудника Тип_сотрудника { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Урок> Урок { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Доступ> Доступ { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Занятие> Занятие { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Класс> Класс { get; set; }
+        public virtual Тип_пользователя Тип_пользователя { get; set; }
     }
 }

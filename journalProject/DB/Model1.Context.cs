@@ -26,14 +26,15 @@ namespace journalProject.DB
         }
     
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<Дневник> Дневник { get; set; }
+        public virtual DbSet<Доступ> Доступ { get; set; }
+        public virtual DbSet<Занятие> Занятие { get; set; }
+        public virtual DbSet<Занятие_ученик> Занятие_ученик { get; set; }
+        public virtual DbSet<Кабинет> Кабинет { get; set; }
         public virtual DbSet<Класс> Класс { get; set; }
-        public virtual DbSet<Оценка_урок> Оценка_урок { get; set; }
         public virtual DbSet<Пользователь> Пользователь { get; set; }
         public virtual DbSet<Предмет> Предмет { get; set; }
-        public virtual DbSet<Тип_сотрудника> Тип_сотрудника { get; set; }
-        public virtual DbSet<Урок> Урок { get; set; }
+        public virtual DbSet<Тема> Тема { get; set; }
+        public virtual DbSet<Тип_пользователя> Тип_пользователя { get; set; }
         public virtual DbSet<Ученик> Ученик { get; set; }
-        public virtual DbSet<Доступ> Доступ { get; set; }
     }
 }

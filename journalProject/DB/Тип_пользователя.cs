@@ -12,10 +12,10 @@ namespace journalProject.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Тип_сотрудника
+    public partial class Тип_пользователя
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Тип_сотрудника()
+        public Тип_пользователя()
         {
             this.Пользователь = new HashSet<Пользователь>();
         }

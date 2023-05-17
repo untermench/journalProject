@@ -12,24 +12,18 @@ namespace journalProject.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Урок
+    public partial class Кабинет
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Урок()
+        public Кабинет()
         {
-            this.Оценка_урок = new HashSet<Оценка_урок>();
+            this.Занятие = new HashSet<Занятие>();
         }
     
         public int ID { get; set; }
-        public int КлассID { get; set; }
-        public int ПредметID { get; set; }
-        public int УчительID { get; set; }
-        public System.DateTime Дата { get; set; }
+        public int Номер { get; set; }
     
-        public virtual Класс Класс { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Оценка_урок> Оценка_урок { get; set; }
-        public virtual Пользователь Пользователь { get; set; }
-        public virtual Предмет Предмет { get; set; }
+        public virtual ICollection<Занятие> Занятие { get; set; }
     }
 }

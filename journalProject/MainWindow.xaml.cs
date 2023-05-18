@@ -38,6 +38,9 @@ namespace journalProject
                     {
                         case 1:
                             {
+                                ProjectWin.AdminWin wiad = new ProjectWin.AdminWin();
+                                wiad.Show();
+                                Close();
                                 break;
                             }
 

@@ -12,25 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace journalProject.ProjectWin
+namespace journalProject.AdminWins
 {
     /// <summary>
-    /// Логика взаимодействия для SettingsWin.xaml
+    /// Логика взаимодействия для AdminAddWin.xaml
     /// </summary>
-    public partial class SettingsWin : Window
+    public partial class AdminAddWin : Window
     {
-        public SettingsWin()
+        public AdminAddWin()
         {
             InitializeComponent();
-            var user = DB.Connect.connection.Пользователь.FirstOrDefault(i => i.ID == ProjectClasses.TeacherClass.id);
-
-            NameBox.Text = user.Имя;
-            SurnameBox.Text = user.Фамилия;
-            PatronymicBox.Text = user.Отчетсво;
-            MailBox.Text = user.Почта;
-            PasBox.Password = user.Пароль;
-            LoginBox.Text = user.Логин;
-
+            userTypeCB.ItemsSource = DB.Connect.connection.Тип_пользователя.ToList();
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -38,9 +30,8 @@ namespace journalProject.ProjectWin
             Close();
         }
 
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-
             try
             {
                 if (NameBox.Text == " ".Trim() || SurnameBox.Text == " ".Trim() || PatronymicBox.Text == " ".Trim() || LoginBox.Text == " ".Trim() || PasBox.Password == " ".Trim() || MailBox.Text == " ".Trim())
@@ -49,39 +40,47 @@ namespace journalProject.ProjectWin
                 }
                 else
                 {
-                    var user = DB.Connect.connection.Пользователь.FirstOrDefault(i => i.ID == ProjectClasses.TeacherClass.id);
+                    var user = new DB.Пользователь();
 
+                    user.Тип = ((DB.Тип_пользователя)userTypeCB.SelectedItem).ID;
                     user.Имя = NameBox.Text;
                     user.Фамилия = SurnameBox.Text;
                     user.Отчетсво = PatronymicBox.Text;
-                    user.Почта = MailBox.Text;
-                    user.Пароль = PasBox.Password;
                     user.Логин = LoginBox.Text;
+                    user.Пароль = PasBox.Password;
+                    user.Почта = MailBox.Text;
 
-                    var loginTest = DB.Connect.connection.Пользователь.FirstOrDefault(i => i.Логин == LoginBox.Text && i.ID != ProjectClasses.TeacherClass.id);
+                    var loginTest = DB.Connect.connection.Пользователь.FirstOrDefault(i => i.Логин == LoginBox.Text);
                     if (loginTest != null)
                     {
                         MessageBox.Show("Данный логин занят!");
                     }
                     else
                     {
-                        var mailText = DB.Connect.connection.Пользователь.FirstOrDefault(i => i.Почта == MailBox.Text && i.ID != ProjectClasses.TeacherClass.id);
+                        var mailText = DB.Connect.connection.Пользователь.FirstOrDefault(i => i.Почта == MailBox.Text);
                         if (mailText != null)
                         {
                             MessageBox.Show("Данная почта занята!");
                         }
                         else
                         {
+                            DB.Connect.connection.Пользователь.Add(user);
                             DB.Connect.connection.SaveChanges();
-                            MessageBox.Show("Ваши данные были изменены");
+                            MessageBox.Show("Пользователь успешно добавлен!");
+                            Close();
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ощибка", ex.Message, MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Ошибка", ex.Message);
             }
+        }
+
+        private void userTypeCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selection_gp = userTypeCB.SelectedItem as DB.Тип_пользователя;
         }
     }
 }

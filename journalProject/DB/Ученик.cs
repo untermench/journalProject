@@ -25,7 +25,7 @@ namespace journalProject.DB
         public string Имя { get; set; }
         public string Отчество { get; set; }
         public System.DateTime Дата_рождения { get; set; }
-        public int КлассID { get; set; }
+        public Nullable<int> КлассID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Занятие_ученик> Занятие_ученик { get; set; }

@@ -1,0 +1,47 @@
+﻿<Page x:Class="journalProject.ProjectPages.MyGroupsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:journalProject.ProjectPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MyGroupsPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="14*"/>
+        </Grid.RowDefinitions>
+        <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" d:ItemsSource="{d:SampleData ItemCount=5}" ToolTip="Двойной клик - редактирование данных" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" CanUserSortColumns="False" AutoGenerateColumns="False" x:Name="UsersDG" MouseDoubleClick="UsersDG_MouseDoubleClick" IsReadOnly="True" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Класс">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Номер}"/>
+                                <TextBlock Text=" - "/>
+                                <TextBlock Text="{Binding Префикс}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Классный руководитель">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="5,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Пользователь.Фамилия}" Margin="0,0,5,0"/>
+                                <TextBlock Text="{Binding Пользователь.Имя}" Margin="0,0,5,0"/>
+                                <TextBlock Text="{Binding Пользователь.Отчетсво}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Background="{DynamicResource SecundaryBackgroundColor}">
+            <TextBox Height="18" Width="220" x:Name="SearchBox" ToolTip="Поиск" FontSize="14" BorderThickness="1"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="10,6,0,6" HorizontalAlignment="Left" />
+        </Grid>
+    </Grid>
+</Page>

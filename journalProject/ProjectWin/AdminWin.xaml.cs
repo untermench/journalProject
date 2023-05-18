@@ -15,13 +15,15 @@ using System.Windows.Shapes;
 namespace journalProject.ProjectWin
 {
     /// <summary>
-    /// Логика взаимодействия для FrameWin.xaml
+    /// Логика взаимодействия для AdminWin.xaml
     /// </summary>
-    public partial class FrameWin : Window
+    public partial class AdminWin : Window
     {
-        public FrameWin()
+        public AdminWin()
         {
             InitializeComponent();
+            PagesFrame.Navigate(new ProjectPages.AdminUsers());
+            UsersRB.IsChecked = true;
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -46,19 +48,6 @@ namespace journalProject.ProjectWin
             WindowState = WindowState.Minimized;
         }
 
-        private void MyClasRB_Checked(object sender, RoutedEventArgs e)
-        {
-            var myclass = DB.Connect.connection.Класс.FirstOrDefault(i => i.Класс_рукID == ProjectClasses.TeacherClass.id);
-            if (myclass != null)
-            {
-                PagesFrame.Navigate(new ProjectPages.MyGroupsPage());
-            }
-            else
-            {
-                MessageBox.Show("Класс не найден");
-            }
-        }
-
         private void MyCabinetRB_Checked(object sender, RoutedEventArgs e)
         {
             MyCabinetRB.IsChecked = false;
@@ -73,9 +62,14 @@ namespace journalProject.ProjectWin
             this.Close();
         }
 
-        private void rdNotes_Checked(object sender, RoutedEventArgs e)
+        private void UsersRB_Checked(object sender, RoutedEventArgs e)
         {
+            PagesFrame.Navigate(new ProjectPages.AdminUsers());
+        }
 
+        private void GroupsRB_Checked(object sender, RoutedEventArgs e)
+        {
+            PagesFrame.Navigate(new ProjectPages.MyGroupsPage());
         }
     }
 }

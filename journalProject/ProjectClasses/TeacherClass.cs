@@ -10,5 +10,7 @@ namespace journalProject.ProjectClasses
     {
         public static int id;
         public static int schoID;
+
+        public static int adminUserEditID;
     }
 }

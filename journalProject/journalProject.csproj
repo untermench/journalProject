@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -41,6 +44,7 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -64,6 +68,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AdminWins\AdminAddWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Assets\Icons\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -72,6 +80,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="AdminWins\AdminAddWin.xaml.cs">
+      <DependentUpon>AdminAddWin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -129,15 +140,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ProjectPages\AdminUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ProjectPages\MyClassPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProjectWin\AddWin.xaml">
+    <Page Include="ProjectPages\MyGroupsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProjectWin\EditWin.xaml">
+    <Page Include="ProjectWin\AdminWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProjectWin\EditUserWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -153,6 +172,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\DataGridStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\MainStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -164,14 +187,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ProjectClasses\TeacherClass.cs" />
+    <Compile Include="ProjectPages\AdminUsers.xaml.cs">
+      <DependentUpon>AdminUsers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProjectPages\MyClassPage.xaml.cs">
       <DependentUpon>MyClassPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProjectWin\AddWin.xaml.cs">
-      <DependentUpon>AddWin.xaml</DependentUpon>
+    <Compile Include="ProjectPages\MyGroupsPage.xaml.cs">
+      <DependentUpon>MyGroupsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProjectWin\EditWin.xaml.cs">
-      <DependentUpon>EditWin.xaml</DependentUpon>
+    <Compile Include="ProjectWin\AdminWin.xaml.cs">
+      <DependentUpon>AdminWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectWin\EditUserWin.xaml.cs">
+      <DependentUpon>EditUserWin.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProjectWin\FrameWin.xaml.cs">
       <DependentUpon>FrameWin.xaml</DependentUpon>
@@ -220,6 +249,8 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="account-avatar-head-svgrepo-com.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="DB\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -230,7 +261,10 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="icon.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="AdminPages\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

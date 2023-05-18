@@ -1,10 +1,10 @@
-﻿<Window x:Class="journalProject.ProjectWin.FrameWin"
+﻿<Window x:Class="journalProject.ProjectWin.AdminWin"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:journalProject.ProjectWin" xmlns:journalproject="clr-namespace:journalProject"
-        mc:Ignorable="d" 
+        xmlns:local="clr-namespace:journalProject.ProjectWin"
+        mc:Ignorable="d"
        Title="MainWindow" Height="650" Width="1000"
         WindowStartupLocation="CenterScreen" WindowStyle="None" 
         Background="Transparent" AllowsTransparency="True"
@@ -24,9 +24,7 @@
             </Grid.ColumnDefinitions>
 
             <Border CornerRadius="0 0 0 8" Background="{DynamicResource SecundaryBackgroundColor}" Grid.RowSpan="2">
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="3" Direction="270" RenderingBias="Performance" ShadowDepth="0.5" Color="#FFC5C5C5"/>
-                </Border.Effect>
+                
                 <Grid x:Name="gridMenu" Width="60">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60"/>
@@ -63,8 +61,8 @@
                     </ToggleButton>
 
                     <StackPanel Grid.Row="3">
-                        <RadioButton x:Name="MyClasRB" Content="Мой класс" Style="{DynamicResource MenuRadioButtonStyle}" Tag="M21 10L12 5L3 10L6 11.6667M21 10L18 11.6667M21 10V10C21.6129 10.3064 22 10.9328 22 11.618V16.9998M6 11.6667L12 15L18 11.6667M6 11.6667V17.6667L12 21L18 17.6667L18 11.6667" Checked="MyClasRB_Checked" />
-                        <RadioButton x:Name="rdNotes" Content="Другие классы" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource notes}" Checked="rdNotes_Checked" />
+                        <RadioButton x:Name="UsersRB" Content="Пользователи" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource adminUsers}" Cursor="Hand" Checked="UsersRB_Checked"/>
+                        <RadioButton x:Name="GroupsRB" Content="Группы" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource adminGroups}" Checked="GroupsRB_Checked" />
                         <RadioButton x:Name="MyCabinetRB" Content="Личный кабинет" Style="{DynamicResource MenuRadioButtonStyle}" Tag="M18.5 7L18.5 4M18.5 4L20 5.28571M18.5 4L17 5.28571M16 8C16 10.2091 14.2091 12 12 12C9.79086 12 8 10.2091 8 8C8 5.79086 9.79086 4 12 4C14.2091 4 16 5.79086 16 8ZM9.31765 14H14.6824C15.1649 14 15.4061 14 15.6219 14.0461C16.3688 14.2056 17.0147 14.7661 17.3765 15.569C17.4811 15.8009 17.5574 16.0765 17.71 16.6278C17.8933 17.2901 17.985 17.6213 17.9974 17.8884C18.0411 18.8308 17.5318 19.6817 16.7756 19.9297C16.5613 20 16.2714 20 15.6916 20H8.30844C7.72864 20 7.43875 20 7.22441 19.9297C6.46818 19.6817 5.95888 18.8308 6.00261 17.8884C6.01501 17.6213 6.10668 17.2901 6.29003 16.6278C6.44262 16.0765 6.51891 15.8009 6.62346 15.569C6.9853 14.7661 7.63116 14.2056 8.37806 14.0461C8.59387 14 8.83513 14 9.31765 14Z" Margin="0 5 0 5" GroupName="cabint" Cursor="Hand" Checked="MyCabinetRB_Checked"/>
                     </StackPanel>
 
@@ -86,7 +84,7 @@
                         <DropShadowEffect BlurRadius="2" Direction="270" RenderingBias="Performance" ShadowDepth="0.5" Color="#FFC5C5C5"/>
                     </Border.Effect>
                 </Border>
-                
+
             </Grid>
             <Border MouseLeftButtonDown="Window_MouseLeftButtonDown" BorderBrush="Black" CornerRadius="0 0 8 8" Background="{DynamicResource SecundaryGrayColor}" Margin="0,-25,0,0" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
                 <Border.Effect>
@@ -100,9 +98,10 @@
                         <TranslateTransform/>
                     </TransformGroup>
                 </Border.RenderTransform>
+                
                 <StackPanel Grid.Row="0" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" Height="25" Orientation="Horizontal" FlowDirection="RightToLeft">
                     <Button x:Name="btnClose" Style="{StaticResource IconButtonsStyle}" Content="{DynamicResource close}" Click="btnClose_Click" Tag="IsCloseButton" Cursor="Hand"/>
-                    <Button x:Name="btnRestore" Margin="5,0" Click="btnRestore_Click" Cursor="Hand">
+                    <Button x:Name="btnRestore" Margin="5,0" Click="btnRestore_Click">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}" BasedOn="{StaticResource IconButtonsStyle}">
                                 <Setter Property="Content" Value="{DynamicResource maximize}"/>
@@ -118,7 +117,7 @@
                     <Button x:Name="btnMinimize" Style="{DynamicResource IconButtonsStyle}" Content="{DynamicResource minimize}" Click="btnMinimize_Click"/>
                 </StackPanel>
             </Border>
-            <Label Content="Электронный журнал" Grid.ColumnSpan="2" Margin="5,-25,862,0" Foreground="#FFB3B3B3" VerticalAlignment="Center"/>
+            <Label Content="Окно администратора" Grid.ColumnSpan="2" Margin="5,-25,862,0" Foreground="#FFB3B3B3" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
         </Grid>
     </Border>
 </Window>

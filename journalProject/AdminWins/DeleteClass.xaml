@@ -1,0 +1,21 @@
+﻿<Window x:Class="journalProject.AdminWins.DeleteClass"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:journalProject.AdminWins"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen" WindowStyle="None" 
+        Background="Transparent" AllowsTransparency="True"
+        ResizeMode="CanResize" WindowState="Normal" 
+        Title="GroupSelectTeacher" Height="45" Width="220">
+    <Border Background="White" CornerRadius="8">
+        <Grid Background="Transparent">
+
+            <Button x:Name="RemoveGroupButton" Style="{DynamicResource NormalRedButton}" Height="25" Width="58" Content="Удалить" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="RemoveGroupButton_Click"/>
+            <Button x:Name="RasformGroupButton" Style="{DynamicResource NormalButton}" Height="25" Width="102" Content="Расформировать" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Center" Click="RasformGroupButton_Click"/>
+            <Button x:Name="btnClose" Style="{StaticResource IconButtonsStyle}" Content="{DynamicResource close}" Click="btnClose_Click" Tag="IsCloseButton" Cursor="Hand" Margin="195,0,0,0" VerticalAlignment="Top"/>
+
+        </Grid>
+    </Border>
+</Window>

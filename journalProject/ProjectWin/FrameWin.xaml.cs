@@ -22,10 +22,15 @@ namespace journalProject.ProjectWin
         public FrameWin()
         {
             InitializeComponent();
+            double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
+            double taskbarHeight = screenHeight - SystemParameters.WorkArea.Height; 
+            screenHeight -= taskbarHeight - 9;
+            this.MaxHeight = screenHeight;
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            WindowState = WindowState.Normal;
             this.DragMove();
         }
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -74,6 +79,11 @@ namespace journalProject.ProjectWin
         }
 
         private void rdNotes_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Border_MouseMove(object sender, MouseEventArgs e)
         {
 
         }

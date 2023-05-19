@@ -31,41 +31,41 @@ namespace journalProject.ProjectPages
                 UsersDG.ItemsSource = DB.Connect.connection.Класс.ToList();
                 UsersDG.SelectedIndex = 0;
 
-                System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
-
-                timer.Tick += new EventHandler(timerTick);
-                timer.Interval = new TimeSpan(0, 0, 2);
-                timer.Start();
+                GroupAddButton.Visibility = Visibility.Visible;
             }
             else
             {
                 UsersDG.ItemsSource = DB.Connect.connection.Класс.Where(i => i.Класс_рукID == ProjectClasses.TeacherClass.id).ToList();
                 UsersDG.SelectedIndex = 0;
+
+                GroupButton.Visibility = Visibility.Visible;
             }
-        }
 
-        private void timerTick(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void Update()
-        {
-            ICollectionView dataView = CollectionViewSource.GetDefaultView(UsersDG.ItemsSource);
-            dataView.Filter = item =>
-            {
-                DB.Класс user = item as DB.Класс;
-                if (user != null)
-                {
-                    string searchText = SearchBox.Text.Trim().ToLower();
-                    return user.Номер.ToString().ToLower().Contains(searchText) || user.Префикс.ToLower().Contains(searchText);
-                }
-                return false;
-            };
+           
         }
 
         private void UsersDG_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            int groupID = (UsersDG.SelectedItem as DB.Класс).ID;
+            var groupStud = DB.Connect.connection.Класс.FirstOrDefault(i => i.ID == groupID);
+            ProjectClasses.TeacherClass.groupID = groupStud.ID;
+            NavigationService.Navigate(new ProjectPages.MyClassPage());
+
+        }
+
+        private void GroupAddButton_Click(object sender, RoutedEventArgs e)
+        {
+            ProjectWin.AddGroupWin win = new ProjectWin.AddGroupWin();
+            win.ShowDialog();
+            UsersDG.ItemsSource = DB.Connect.connection.Класс.ToList();
+
+        }
+
+        private void GroupButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdminWins.GroupSelectTeacher win = new AdminWins.GroupSelectTeacher();
+            win.ShowDialog();
+            UsersDG.ItemsSource = DB.Connect.connection.Класс.Where(i => i.Класс_рукID == ProjectClasses.TeacherClass.id).ToList();
 
         }
     }

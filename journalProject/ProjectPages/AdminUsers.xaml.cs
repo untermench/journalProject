@@ -31,7 +31,7 @@ namespace journalProject.ProjectPages
             System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
 
             timer.Tick += new EventHandler(timerTick);
-            timer.Interval = new TimeSpan(0, 0, 2);
+            timer.Interval = new TimeSpan(0, 0, 15);
             timer.Start();
         }
 
@@ -64,6 +64,7 @@ namespace journalProject.ProjectPages
         {
             AdminWins.AdminAddWin win = new AdminWins.AdminAddWin();
             win.ShowDialog();
+            UsersDG.ItemsSource = DB.Connect.connection.Пользователь.ToList();
         }
 
         private void Update()

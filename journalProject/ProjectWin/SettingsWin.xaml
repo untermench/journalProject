@@ -77,7 +77,7 @@
 
             <Border Background="White" CornerRadius="0 0 8 8" Margin="0,316,0,0">
                 <Grid>
-                    <Button x:Name="SaveButton" Click="SaveButton_Click" Height="20" Foreground="White" Content="Сохранить" Width="100" BorderThickness="0" Background="#FF7CB3E6" Cursor="Hand" Margin="240,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Top">
+                    <Button Style="{DynamicResource NormalButton}" x:Name="SaveButton" Click="SaveButton_Click" Height="20" Foreground="White" Content="Сохранить" Width="100" BorderThickness="0" Background="#FF7CB3E6" Cursor="Hand" Margin="240,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Top">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>

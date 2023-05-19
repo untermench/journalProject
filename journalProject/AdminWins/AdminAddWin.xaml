@@ -77,14 +77,14 @@
 
             <Border Background="White" CornerRadius="0 0 8 8" Margin="0,316,0,0">
                 <Grid Margin="0,5,0,5">
-                    <Button x:Name="AddButton" Click="AddButton_Click" Height="20" Foreground="White" Content="Добавить" Width="100" BorderThickness="0" Background="#FF7CB3E6" Cursor="Hand" Margin="240,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Top">
+                    <Button Style="{DynamicResource NormalButton}" x:Name="AddButton" Click="AddButton_Click" Height="20" Foreground="White" Content="Добавить" Width="100" BorderThickness="0" Background="#FF7CB3E6" Cursor="Hand" Margin="240,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Top">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <ComboBox Name="userTypeCB" SelectedIndex="0" ToolTip="Тип пользователя" Background="White" BorderThickness="0 0 0 2" Margin="10,0,200,0" Opacity="0.995" SelectionChanged="userTypeCB_SelectionChanged" FontSize="12" HorizontalContentAlignment="Center">
+                    <ComboBox  Name="userTypeCB" SelectedIndex="0" ToolTip="Тип пользователя" Background="White" BorderThickness="0 0 0 2" Margin="10,0,200,0" Opacity="0.995" SelectionChanged="userTypeCB_SelectionChanged" FontSize="12" HorizontalContentAlignment="Center">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock>

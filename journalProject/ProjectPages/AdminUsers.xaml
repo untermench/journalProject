@@ -27,14 +27,9 @@
         </DataGrid>
 
         <Grid Background="{DynamicResource  SecundaryBackgroundColor}">
-            <Button x:Name="UserAddButton" BorderThickness="0" Content="Добавить пользователя" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Width="145" Background="White"  FontSize="11" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="UserAddButton_Click" Cursor="Hand">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="3"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
-            <TextBox Height="18" Width="220" x:Name="SearchBox" ToolTip="Поиск" FontSize="14" BorderThickness="1"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="168,6,0,6" TextChanged="SearchBox_TextChanged" HorizontalAlignment="Left"/>
+            <Button x:Name="UserAddButton" Style="{DynamicResource AddButton}" Content="Добавить пользователя" HorizontalAlignment="Right" Margin="0,0,15,0" VerticalAlignment="Center" Height="25" Width="165" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="UserAddButton_Click" Cursor="Hand"/>
+
+            <TextBox Style="{DynamicResource SearchBox}" Height="18" Width="220" x:Name="SearchBox" ToolTip="Поиск" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="10,6,0,6" TextChanged="SearchBox_TextChanged" HorizontalAlignment="Left"/>
         </Grid>
     </Grid>
 </Page>

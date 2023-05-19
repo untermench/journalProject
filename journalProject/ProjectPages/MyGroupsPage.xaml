@@ -13,7 +13,7 @@
             <RowDefinition/>
             <RowDefinition Height="14*"/>
         </Grid.RowDefinitions>
-        <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" d:ItemsSource="{d:SampleData ItemCount=5}" ToolTip="Двойной клик - редактирование данных" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" CanUserSortColumns="False" AutoGenerateColumns="False" x:Name="UsersDG" MouseDoubleClick="UsersDG_MouseDoubleClick" IsReadOnly="True" Grid.Row="1">
+        <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" d:ItemsSource="{d:SampleData ItemCount=5}" ToolTip="Двойной клик - просмотр группы" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" CanUserSortColumns="False" AutoGenerateColumns="False" x:Name="UsersDG" MouseDoubleClick="UsersDG_MouseDoubleClick" IsReadOnly="True" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Класс">
                     <DataGridTemplateColumn.CellTemplate>
@@ -41,7 +41,9 @@
         </DataGrid>
 
         <Grid Background="{DynamicResource SecundaryBackgroundColor}">
-            <TextBox Height="18" Width="220" x:Name="SearchBox" ToolTip="Поиск" FontSize="14" BorderThickness="1"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="10,6,0,6" HorizontalAlignment="Left" />
+            <TextBox Style="{DynamicResource SearchBox}" Height="18" Width="220" x:Name="SearchBox" ToolTip="Поиск" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="10,6,0,6" HorizontalAlignment="Left" />
         </Grid>
+        <Button Visibility="Hidden" x:Name="GroupAddButton" Style="{DynamicResource AddButton}" Width="155" Height="25" Content="Создать новую группу" Margin="0,0,15,0" HorizontalAlignment="Right" Click="GroupAddButton_Click"/>
+        <Button Visibility="Hidden" x:Name="GroupButton" Style="{DynamicResource AddButton}" Width="155" Height="25" Content="Взять руководство" Margin="0,0,15,0" HorizontalAlignment="Right" Click="GroupButton_Click" Cursor="Hand"/>
     </Grid>
 </Page>

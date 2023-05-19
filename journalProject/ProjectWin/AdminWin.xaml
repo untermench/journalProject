@@ -5,14 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:journalProject.ProjectWin"
         mc:Ignorable="d"
-       Title="MainWindow" Height="650" Width="1000"
+        Title="MainWindow" Height="650" Width="1000"
         WindowStartupLocation="CenterScreen" WindowStyle="None" 
         Background="Transparent" AllowsTransparency="True"
         ResizeMode="CanResize" WindowState="Normal">
     <Border CornerRadius="0 0 8 8" Background="{DynamicResource PrimaryBackgroundColor}" Margin="0,26,0,0">
-        <Border.Effect>
-            <DropShadowEffect BlurRadius="4" Direction="360" RenderingBias="Performance" ShadowDepth="2" Color="#FFC5C5C5"/>
-        </Border.Effect>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -63,10 +60,11 @@
                     <StackPanel Grid.Row="3">
                         <RadioButton x:Name="UsersRB" Content="Пользователи" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource adminUsers}" Cursor="Hand" Checked="UsersRB_Checked"/>
                         <RadioButton x:Name="GroupsRB" Content="Группы" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource adminGroups}" Checked="GroupsRB_Checked" />
+                        <RadioButton x:Name="StudentsRB" Content="Ученики" Style="{DynamicResource MenuRadioButtonStyle}" Tag="M2 22a8 8 0 1 1 16 0h-2a6 6 0 1 0-12 0H2zm8-9c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6zm0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm8.284 3.703A8.002 8.002 0 0 1 23 22h-2a6.001 6.001 0 0 0-3.537-5.473l.82-1.824zm-.688-11.29A5.5 5.5 0 0 1 21 8.5a5.499 5.499 0 0 1-5 5.478v-2.013a3.5 3.5 0 0 0 1.041-6.609l.555-1.943z" Margin="0 5 0 5" Cursor="Hand" Checked="StudentsRB_Checked"/>
                         <RadioButton x:Name="MyCabinetRB" Content="Личный кабинет" Style="{DynamicResource MenuRadioButtonStyle}" Tag="M18.5 7L18.5 4M18.5 4L20 5.28571M18.5 4L17 5.28571M16 8C16 10.2091 14.2091 12 12 12C9.79086 12 8 10.2091 8 8C8 5.79086 9.79086 4 12 4C14.2091 4 16 5.79086 16 8ZM9.31765 14H14.6824C15.1649 14 15.4061 14 15.6219 14.0461C16.3688 14.2056 17.0147 14.7661 17.3765 15.569C17.4811 15.8009 17.5574 16.0765 17.71 16.6278C17.8933 17.2901 17.985 17.6213 17.9974 17.8884C18.0411 18.8308 17.5318 19.6817 16.7756 19.9297C16.5613 20 16.2714 20 15.6916 20H8.30844C7.72864 20 7.43875 20 7.22441 19.9297C6.46818 19.6817 5.95888 18.8308 6.00261 17.8884C6.01501 17.6213 6.10668 17.2901 6.29003 16.6278C6.44262 16.0765 6.51891 15.8009 6.62346 15.569C6.9853 14.7661 7.63116 14.2056 8.37806 14.0461C8.59387 14 8.83513 14 9.31765 14Z" Margin="0 5 0 5" GroupName="cabint" Cursor="Hand" Checked="MyCabinetRB_Checked"/>
                     </StackPanel>
 
-                    <RadioButton GroupName="ExitGroup" Click="LogoutButton_Click" x:Name="LogButton" Content="Выйти из аккаунта" Style="{DynamicResource MenuRadioButtonStyle}" Tag="M7.707,8.707,5.414,11H17a1,1,0,0,1,0,2H5.414l2.293,2.293a1,1,0,1,1-1.414,1.414l-4-4a1,1,0,0,1,0-1.414l4-4A1,1,0,1,1,7.707,8.707ZM21,1H13a1,1,0,0,0,0,2h7V21H13a1,1,0,0,0,0,2h8a1,1,0,0,0,1-1V2A1,1,0,0,0,21,1Z" Margin="0,444,0,0" Grid.Row="3" Cursor="Hand" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+                    <RadioButton GroupName="ExitGroup" Click="LogoutButton_Click" x:Name="LogButton" Content="Выйти из аккаунта" Style="{DynamicResource MenuRadioButtonStyle}" Tag="M7.707,8.707,5.414,11H17a1,1,0,0,1,0,2H5.414l2.293,2.293a1,1,0,1,1-1.414,1.414l-4-4a1,1,0,0,1,0-1.414l4-4A1,1,0,1,1,7.707,8.707ZM21,1H13a1,1,0,0,0,0,2h7V21H13a1,1,0,0,0,0,2h8a1,1,0,0,0,1-1V2A1,1,0,0,0,21,1Z" Margin="0,444,0,0" Grid.Row="3" Cursor="Hand" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Bottom" />
 
                 </Grid>
             </Border>
@@ -80,16 +78,10 @@
 
                 <Border>
                     <Frame x:Name="PagesFrame" NavigationUIVisibility="Hidden"/>
-                    <Border.Effect>
-                        <DropShadowEffect BlurRadius="2" Direction="270" RenderingBias="Performance" ShadowDepth="0.5" Color="#FFC5C5C5"/>
-                    </Border.Effect>
                 </Border>
 
             </Grid>
-            <Border MouseLeftButtonDown="Window_MouseLeftButtonDown" BorderBrush="Black" CornerRadius="0 0 8 8" Background="{DynamicResource SecundaryGrayColor}" Margin="0,-25,0,0" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="2" Direction="270" RenderingBias="Performance" ShadowDepth="0.5" Color="#FFC5C5C5"/>
-                </Border.Effect>
+            <Border BorderThickness="0.3" MouseLeftButtonDown="Window_MouseLeftButtonDown" BorderBrush="Black" CornerRadius="0 0 8 8" Background="{DynamicResource SecundaryGrayColor}" Margin="0,-25,0,0" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
                 <Border.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleY="-1"/>
@@ -117,7 +109,7 @@
                     <Button x:Name="btnMinimize" Style="{DynamicResource IconButtonsStyle}" Content="{DynamicResource minimize}" Click="btnMinimize_Click"/>
                 </StackPanel>
             </Border>
-            <Label Content="Окно администратора" Grid.ColumnSpan="2" Margin="5,-25,862,0" Foreground="#FFB3B3B3" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+            <Label MouseLeftButtonDown="Window_MouseLeftButtonDown" Content="Окно администратора" Grid.ColumnSpan="2" Margin="5,-25,862,0" Foreground="#FFB3B3B3" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
         </Grid>
     </Border>
 </Window>

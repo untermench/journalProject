@@ -1,0 +1,86 @@
+﻿<Window x:Class="journalProject.ProjectWin.AddGroupWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:journalProject.ProjectWin"
+        mc:Ignorable="d"
+         WindowStartupLocation="CenterScreen" WindowStyle="None" 
+        Background="Transparent" AllowsTransparency="True"
+        ResizeMode="CanResize" WindowState="Normal" 
+        Title="AddGroupWin" Height="321" Width="500">
+    <Border CornerRadius="8" Background="#EEEEEE">
+        <Grid Background="Transparent">
+            <TextBox Height="18" Width="160" x:Name="SearchBox" ToolTip="Поиск" Style="{DynamicResource SearchBox}"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="50,22,0,280" HorizontalAlignment="Left"/>
+
+            <Button x:Name="btnClose" Style="{StaticResource IconButtonsStyle}" Content="{DynamicResource close}" Click="btnClose_Click" Tag="IsCloseButton" Cursor="Hand" Margin="465,10,10,0" VerticalAlignment="Top"/>
+
+            <DataGrid x:Name="StudentDG" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" d:ItemsSource="{d:SampleData ItemCount=7}" Margin="0,50,0,0">
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn ElementStyle="{DynamicResource CheckBoxStyle}">
+                        <DataGridCheckBoxColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox Style="{DynamicResource CheckBoxStyle}" HorizontalAlignment="Right" Margin="0,0,0,0"/>
+                            </DataTemplate>
+                        </DataGridCheckBoxColumn.HeaderTemplate>
+                    </DataGridCheckBoxColumn>
+                    <DataGridTemplateColumn Header="Ученик">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Фамилия}" Margin="0,0,5,0"/>
+                                    <TextBlock Text="{Binding Имя}" Margin="0,0,5,0"/>
+                                    <TextBlock Text="{Binding Отчество}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Дата рождения" Binding="{Binding Дата_рождения, ConverterCulture=ru, StringFormat=D}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button x:Name="AddGroupButton" ToolTip="Добавить" Content="Button" Height="25" Width="25" Style="{DynamicResource AddButtonMini}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="AddGroupButton_Click"/>
+            <ComboBox x:Name="GroupNumberCB"  HorizontalAlignment="Left" Margin="223,19,0,0" VerticalAlignment="Top" Width="37" BorderThickness="0,0,0,1">
+                <TextBlock Text="1"/>
+                <TextBlock Text="2"/>
+                <TextBlock Text="3"/>
+                <TextBlock Text="4"/>
+                <TextBlock Text="5"/>
+                <TextBlock Text="6"/>
+                <TextBlock Text="7"/>
+                <TextBlock Text="8"/>
+                <TextBlock Text="9"/>
+                <TextBlock Text="10"/>
+                <TextBlock Text="11"/>
+            </ComboBox>
+            <ComboBox x:Name="GroupPrefixCB"  HorizontalAlignment="Left" Margin="265,19,0,0" VerticalAlignment="Top" Width="37" BorderThickness="0,0,0,1">
+                <TextBlock Text="А"/>
+                <TextBlock Text="Б"/>
+                <TextBlock Text="В"/>
+                <TextBlock Text="Г"/>
+                <TextBlock Text="Д"/>
+                <TextBlock Text="Е"/>
+                <TextBlock Text="З"/>
+                <TextBlock Text="И"/>
+                <TextBlock Text="К"/>
+            </ComboBox>
+            <ComboBox SelectionChanged="GroupTeacherCB_SelectionChanged" x:Name="GroupTeacherCB"  HorizontalAlignment="Left" Margin="307,19,0,0" VerticalAlignment="Top" Width="145" BorderThickness="0,0,0,1">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{} {0} {1} {2}">
+                                    <Binding Path="Фамилия"/>
+                                    <Binding Path="Имя"/>
+                                    <Binding Path="Отчетсво"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <TextBlock HorizontalAlignment="Left" Margin="232,10,0,0" TextWrapping="Wrap" Text="Номер" VerticalAlignment="Top" FontSize="6" Foreground="#FF949494"/>
+            <TextBlock HorizontalAlignment="Left" Margin="271,10,0,0" TextWrapping="Wrap" Text="Префикс" VerticalAlignment="Top" FontSize="6" Foreground="#FF949494"/>
+            <TextBlock HorizontalAlignment="Left" Margin="307,10,0,0" TextWrapping="Wrap" Text="Класный руководитель*" ToolTip="Не обязательно для заполнения" VerticalAlignment="Top" FontSize="6" Foreground="#FF949494"/>
+        </Grid>
+    </Border>
+</Window>

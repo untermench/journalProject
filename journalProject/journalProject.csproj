@@ -68,7 +68,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AdminPages\AdminStudentObs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AdminWins\AdminAddWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminWins\DeleteClass.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminWins\GroupSelectTeacher.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminWins\StudentCreateWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminWins\StudentEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -80,8 +100,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="AdminPages\AdminStudentObs.xaml.cs">
+      <DependentUpon>AdminStudentObs.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AdminWins\AdminAddWin.xaml.cs">
       <DependentUpon>AdminAddWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWins\DeleteClass.xaml.cs">
+      <DependentUpon>DeleteClass.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWins\GroupSelectTeacher.xaml.cs">
+      <DependentUpon>GroupSelectTeacher.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWins\StudentCreateWin.xaml.cs">
+      <DependentUpon>StudentCreateWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWins\StudentEdit.xaml.cs">
+      <DependentUpon>StudentEdit.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -144,11 +179,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ProjectPages\LessonSubjects.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ProjectPages\MyClassPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProjectPages\MyGroupsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProjectPages\StudentLessons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProjectWin\AddGroupWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -180,6 +227,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Styles\СhecBoxStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\LightTheme.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -190,11 +241,20 @@
     <Compile Include="ProjectPages\AdminUsers.xaml.cs">
       <DependentUpon>AdminUsers.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProjectPages\LessonSubjects.xaml.cs">
+      <DependentUpon>LessonSubjects.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProjectPages\MyClassPage.xaml.cs">
       <DependentUpon>MyClassPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProjectPages\MyGroupsPage.xaml.cs">
       <DependentUpon>MyGroupsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectPages\StudentLessons.xaml.cs">
+      <DependentUpon>StudentLessons.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectWin\AddGroupWin.xaml.cs">
+      <DependentUpon>AddGroupWin.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProjectWin\AdminWin.xaml.cs">
       <DependentUpon>AdminWin.xaml</DependentUpon>
@@ -263,8 +323,6 @@
     </Content>
     <Resource Include="icon.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AdminPages\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

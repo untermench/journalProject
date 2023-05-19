@@ -23,11 +23,17 @@ namespace journalProject.ProjectWin
         {
             InitializeComponent();
             PagesFrame.Navigate(new ProjectPages.AdminUsers());
+
             UsersRB.IsChecked = true;
+            double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
+            double taskbarHeight = screenHeight - SystemParameters.WorkArea.Height;
+            screenHeight -= taskbarHeight - 9;
+            this.MaxHeight = screenHeight;
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            WindowState = WindowState.Normal;
             this.DragMove();
         }
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -70,6 +76,12 @@ namespace journalProject.ProjectWin
         private void GroupsRB_Checked(object sender, RoutedEventArgs e)
         {
             PagesFrame.Navigate(new ProjectPages.MyGroupsPage());
+        }
+
+        private void StudentsRB_Checked(object sender, RoutedEventArgs e)
+        {
+            PagesFrame.Navigate(new AdminPages.AdminStudentObs());
+
         }
     }
 }

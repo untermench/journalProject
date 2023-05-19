@@ -91,37 +91,33 @@ namespace journalProject.ProjectWin
             var del = DB.Connect.connection.Пользователь.FirstOrDefault(i => i.ID == ProjectClasses.TeacherClass.id);
             if (prov.ID != del.ID)
             {
-                try
-                {
+                
                     if (MessageBox.Show($"Вы действительно хотите удалить данного пользователя?",
                             "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
                         var removeStud = DB.Connect.connection.Пользователь.FirstOrDefault(i => i.ID == removeID);
-                        var dostupGroup = DB.Connect.connection.Доступ.FirstOrDefault(i => i.УчительID == removeID);
+                        var dostupGroup = DB.Connect.connection.Доступ.Where(i => i.УчительID == removeID);
                         if (dostupGroup != null)
-                            DB.Connect.connection.Доступ.Remove(dostupGroup);
+                            DB.Connect.connection.Доступ.RemoveRange(dostupGroup);
                         var teacherGroup = DB.Connect.connection.Класс.FirstOrDefault(i => i.Класс_рукID == removeID);
+                        
                         if (teacherGroup != null)
                         {
-                            teacherGroup.Класс_рукID = null;
-                            DB.Connect.connection.SaveChanges();
+
+                                teacherGroup.Класс_рукID = null;
                         }
+
                         var zanat = DB.Connect.connection.Занятие.FirstOrDefault(i => i.УчительID == removeID);
                         if (zanat != null)
                         {
-                            zanat.УчительID = 0;
-                            DB.Connect.connection.SaveChanges();
+                                zanat.УчительID = 4;
                         }
                         DB.Connect.connection.Пользователь.Remove(removeStud);
                         DB.Connect.connection.SaveChanges();
                         MessageBox.Show("Пользователь удален");
                         Close();
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Ошибка", ex.Message);
-                }
+                
             }
             else
             {

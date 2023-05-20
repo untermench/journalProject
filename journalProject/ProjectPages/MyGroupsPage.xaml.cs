@@ -50,6 +50,7 @@ namespace journalProject.ProjectPages
             var groupStud = DB.Connect.connection.Класс.FirstOrDefault(i => i.ID == groupID);
             ProjectClasses.TeacherClass.groupID = groupStud.ID;
             NavigationService.Navigate(new ProjectPages.MyClassPage());
+            ProjectClasses.TeacherClass.studSelectionMode = 2;
 
         }
 

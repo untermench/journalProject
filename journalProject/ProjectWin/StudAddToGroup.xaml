@@ -1,11 +1,11 @@
-﻿<Window x:Class="journalProject.ProjectWin.AddGroupWin"
+﻿<Window x:Class="journalProject.ProjectWin.StudAddToGroup"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:journalProject.ProjectWin"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen" WindowStyle="None" 
+       WindowStartupLocation="CenterScreen" WindowStyle="None" 
         Background="Transparent" AllowsTransparency="True"
         ResizeMode="CanResize" WindowState="Normal" 
         Title="AddGroupWin" Height="321" Width="500">
@@ -36,51 +36,16 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Header="Дата рождения" Binding="{Binding Дата_рождения, ConverterCulture=ru, StringFormat=D}"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="addStud" Click="addStud_Click" Width="20" Height="20" Style="{DynamicResource IconButtonsStyle}" Content="{DynamicResource plus}" HorizontalAlignment="Left" Cursor="Hand"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
             <Button x:Name="AddGroupButton" ToolTip="Добавить" Content="Button" Height="25" Width="25" Style="{DynamicResource AddButtonMini}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="AddGroupButton_Click"/>
-            <ComboBox x:Name="GroupNumberCB"  HorizontalAlignment="Left" Margin="223,19,0,0" VerticalAlignment="Top" Width="37" BorderThickness="0,0,0,1">
-                <TextBlock Text="1"/>
-                <TextBlock Text="2"/>
-                <TextBlock Text="3"/>
-                <TextBlock Text="4"/>
-                <TextBlock Text="5"/>
-                <TextBlock Text="6"/>
-                <TextBlock Text="7"/>
-                <TextBlock Text="8"/>
-                <TextBlock Text="9"/>
-                <TextBlock Text="10"/>
-                <TextBlock Text="11"/>
-            </ComboBox>
-            <ComboBox x:Name="GroupPrefixCB"  HorizontalAlignment="Left" Margin="265,19,0,0" VerticalAlignment="Top" Width="37" BorderThickness="0,0,0,1">
-                <TextBlock Text="А"/>
-                <TextBlock Text="Б"/>
-                <TextBlock Text="В"/>
-                <TextBlock Text="Г"/>
-                <TextBlock Text="Д"/>
-                <TextBlock Text="Е"/>
-                <TextBlock Text="З"/>
-                <TextBlock Text="И"/>
-                <TextBlock Text="К"/>
-            </ComboBox>
-            <ComboBox SelectionChanged="GroupTeacherCB_SelectionChanged" x:Name="GroupTeacherCB"  HorizontalAlignment="Left" Margin="307,19,0,0" VerticalAlignment="Top" Width="145" BorderThickness="0,0,0,1">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock>
-                            <TextBlock.Text>
-                                <MultiBinding StringFormat="{} {0} {1} {2}">
-                                    <Binding Path="Фамилия"/>
-                                    <Binding Path="Имя"/>
-                                    <Binding Path="Отчетсво"/>
-                                </MultiBinding>
-                            </TextBlock.Text>
-                        </TextBlock>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-            <TextBlock HorizontalAlignment="Left" Margin="232,10,0,0" TextWrapping="Wrap" Text="Номер" VerticalAlignment="Top" FontSize="6" Foreground="#FF949494"/>
-            <TextBlock HorizontalAlignment="Left" Margin="271,10,0,0" TextWrapping="Wrap" Text="Префикс" VerticalAlignment="Top" FontSize="6" Foreground="#FF949494"/>
-            <TextBlock HorizontalAlignment="Left" Margin="307,10,0,0" TextWrapping="Wrap" Text="Класный руководитель*" ToolTip="Не обязательно для заполнения" VerticalAlignment="Top" FontSize="6" Foreground="#FF949494"/>
         </Grid>
     </Border>
 </Window>

@@ -33,6 +33,7 @@ namespace journalProject.AdminPages
             var stud = DB.Connect.connection.Ученик.FirstOrDefault(i => i.ID == studentID);
             ProjectClasses.TeacherClass.selectedStudID = stud.ID;
             NavigationService.Navigate(new ProjectPages.LessonSubjects());
+            ProjectClasses.TeacherClass.studSelectionMode = 1;
         }
 
         private void StudAddButton_Click(object sender, RoutedEventArgs e)

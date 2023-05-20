@@ -49,6 +49,9 @@ namespace journalProject.ProjectPages
 
         private void StudAddButton_Click(object sender, RoutedEventArgs e)
         {
+            ProjectWin.StudAddToGroup win = new ProjectWin.StudAddToGroup();
+            win.ShowDialog();
+            UsersDG.ItemsSource = DB.Connect.connection.Ученик.Where(i => i.КлассID == ProjectClasses.TeacherClass.groupID).ToList();
 
         }
 
@@ -107,6 +110,30 @@ namespace journalProject.ProjectPages
             }
             else
                 NavigationService.Navigate(new MyGroupsPage());
+        }
+
+        private void EditButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            ProjectWin.EditGroupWin win = new ProjectWin.EditGroupWin();
+            win.ShowDialog();
+            var group = DB.Connect.connection.Класс.FirstOrDefault(i => i.ID == ProjectClasses.TeacherClass.groupID);
+            var user = DB.Connect.connection.Пользователь.FirstOrDefault(i => i.ID == ProjectClasses.TeacherClass.id);
+            if(group.Класс_рукID != user.ID && user.Тип != 1)
+                NavigationService.Navigate(new MyGroupsPage());
+        }
+
+        private void RemoveStudentButton_Click(object sender, RoutedEventArgs e)
+        {
+            int studentID = (UsersDG.SelectedItem as DB.Ученик).ID;
+            if (MessageBox.Show($"Данный ученик будет удален из данной группы. Вы уверены в этом?",
+                        "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                var student = DB.Connect.connection.Ученик.FirstOrDefault(i => i.ID == studentID);
+                student.КлассID = null;
+                DB.Connect.connection.SaveChanges();
+                UsersDG.ItemsSource = DB.Connect.connection.Ученик.Where(i => i.КлассID == ProjectClasses.TeacherClass.groupID).ToList();
+                UsersDG.SelectedIndex = 0;
+            }
         }
     }
 }

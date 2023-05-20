@@ -80,7 +80,7 @@ namespace journalProject.ProjectWin
 
         private void rdNotes_Checked(object sender, RoutedEventArgs e)
         {
-
+            PagesFrame.Navigate(new LessonsPages.LessonsGroupPage());
         }
 
         private void Border_MouseMove(object sender, MouseEventArgs e)

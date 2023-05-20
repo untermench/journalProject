@@ -47,7 +47,10 @@ namespace journalProject.ProjectPages
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
+            if(ProjectClasses.TeacherClass.studSelectionMode == 2)
             NavigationService.Navigate(new MyClassPage());
+            else
+            NavigationService.Navigate(new AdminPages.AdminStudentObs());
         }
     }
 }

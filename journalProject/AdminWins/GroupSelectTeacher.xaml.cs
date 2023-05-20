@@ -34,14 +34,16 @@ namespace journalProject.AdminWins
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var user = ((DB.Класс)ClassCB.SelectedItem).ID;
+            if (ClassCB.SelectedItem != null)
+            {
+                var user = ((DB.Класс)ClassCB.SelectedItem).ID;
 
-            var group = DB.Connect.connection.Класс.FirstOrDefault(i => i.ID == user);
+                var group = DB.Connect.connection.Класс.FirstOrDefault(i => i.ID == user);
 
-            group.Класс_рукID = ProjectClasses.TeacherClass.id;
+                group.Класс_рукID = ProjectClasses.TeacherClass.id;
 
-            DB.Connect.connection.SaveChanges();
-
+                DB.Connect.connection.SaveChanges();
+            }
             Close();
 
         }

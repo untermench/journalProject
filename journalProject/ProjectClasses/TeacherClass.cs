@@ -18,5 +18,7 @@ namespace journalProject.ProjectClasses
         public static int selectedStudID;
 
         public static int selectedLessonItemID;
+
+        public static int studSelectionMode;
     }
 }

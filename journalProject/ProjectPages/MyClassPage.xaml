@@ -41,6 +41,13 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="RemoveStudentButton" Click="RemoveStudentButton_Click" Height="20" Width="20" HorizontalAlignment="Left" Style="{DynamicResource IconButtonsStyle}" Content="{DynamicResource close}" Cursor="Hand"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -50,7 +57,8 @@
             <Button Visibility="Hidden" x:Name="OtkazButton" Content="Отказаться от класса" HorizontalAlignment="Right" Margin="0,0,174,0" VerticalAlignment="Center" Width="145" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Cursor="Hand" Click="OtkazButton_Click" Style="{DynamicResource NormalButton}"/>
 
             <TextBox Height="18" Width="220" x:Name="SearchBox" ToolTip="Поиск" Style="{DynamicResource SearchBox}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="35,6,0,6" HorizontalAlignment="Left"/>
-            <Button Visibility="Hidden" x:Name="RemoveGroupButton" Content="Параметра удаления" HorizontalAlignment="Right" VerticalAlignment="Center" Width="144" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Cursor="Hand" Click="RemoveGroupButton_Click" Style="{DynamicResource NormalButton}" Margin="0,0,174,0"/>
+            <Button Visibility="Hidden" x:Name="RemoveGroupButton" Content="Параметры удаления" HorizontalAlignment="Right" VerticalAlignment="Center" Width="144" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Cursor="Hand" Click="RemoveGroupButton_Click" Style="{DynamicResource NormalButton}" Margin="0,0,174,0"/>
+            <Button Click="EditButton_Click_1" x:Name="EditButton" ToolTip="Редактировать группу" Style="{DynamicResource EditButtonMini}" Height="25" Width="25" Content="Button" HorizontalAlignment="Left" Margin="260,0,0,0" VerticalAlignment="Center"/>
         </Grid>
     </Grid>
 </Page>

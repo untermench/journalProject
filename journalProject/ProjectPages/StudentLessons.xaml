@@ -19,6 +19,17 @@
                 <DataGridTextColumn Header="Дата занятия" Binding="{Binding Занятие.Дата, ConverterCulture=ru, StringFormat=D}"/>
                 <DataGridTextColumn Header="Кабинет" Binding="{Binding Занятие.Кабинет.Номер}"/>
                 <DataGridTextColumn x:Name="ocenka" Header="Оценка" Binding="{Binding Оценка}"/>
+                <DataGridTemplateColumn Header="Преподаватель">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="5,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Занятие.Пользователь.Фамилия}" Margin="0,0,5,0"/>
+                                <TextBlock Text="{Binding Занятие.Пользователь.Имя}" Margin="0,0,5,0"/>
+                                <TextBlock Text="{Binding Занятие.Пользователь.Отчетсво}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 

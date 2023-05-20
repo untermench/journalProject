@@ -23,7 +23,7 @@ namespace journalProject.DB
         public int ID { get; set; }
         public int КлассID { get; set; }
         public int ПредметID { get; set; }
-        public int УчительID { get; set; }
+        public Nullable<int> УчительID { get; set; }
         public System.DateTime Дата { get; set; }
         public int КабинетID { get; set; }
         public int ТемаID { get; set; }

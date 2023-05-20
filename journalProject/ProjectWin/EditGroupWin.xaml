@@ -1,4 +1,4 @@
-﻿<Window x:Class="journalProject.ProjectWin.AddGroupWin"
+﻿<Window x:Class="journalProject.ProjectWin.EditGroupWin"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -38,7 +38,7 @@
                     <DataGridTextColumn Header="Дата рождения" Binding="{Binding Дата_рождения, ConverterCulture=ru, StringFormat=D}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="AddGroupButton" ToolTip="Добавить" Content="Button" Height="25" Width="25" Style="{DynamicResource AddButtonMini}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="AddGroupButton_Click"/>
+            <Button x:Name="AddGroupButton" ToolTip="Добавить" Content="Button" Height="25" Width="25" Style="{DynamicResource EditButtonMini}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="AddGroupButton_Click"/>
             <ComboBox x:Name="GroupNumberCB"  HorizontalAlignment="Left" Margin="223,19,0,0" VerticalAlignment="Top" Width="37" BorderThickness="0,0,0,1">
                 <TextBlock Text="1"/>
                 <TextBlock Text="2"/>

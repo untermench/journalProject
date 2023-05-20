@@ -31,7 +31,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="КлассID" Type="int" Nullable="false" />
           <Property Name="ПредметID" Type="int" Nullable="false" />
-          <Property Name="УчительID" Type="int" Nullable="false" />
+          <Property Name="УчительID" Type="int" />
           <Property Name="Дата" Type="date" Nullable="false" />
           <Property Name="КабинетID" Type="int" Nullable="false" />
           <Property Name="ТемаID" Type="int" Nullable="false" />
@@ -254,7 +254,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Урок_Учитель">
-          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="1" />
+          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="0..1" />
           <End Role="Занятие" Type="Self.Занятие" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Пользователь">
@@ -380,7 +380,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="КлассID" Type="Int32" Nullable="false" />
           <Property Name="ПредметID" Type="Int32" Nullable="false" />
-          <Property Name="УчительID" Type="Int32" Nullable="false" />
+          <Property Name="УчительID" Type="Int32" />
           <Property Name="Дата" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="КабинетID" Type="Int32" Nullable="false" />
           <Property Name="ТемаID" Type="Int32" Nullable="false" />
@@ -580,7 +580,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Урок_Учитель">
-          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="1" />
+          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="0..1" />
           <End Role="Занятие" Type="Self.Занятие" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Пользователь">

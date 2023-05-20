@@ -25,12 +25,12 @@ namespace journalProject.LessonsPages
             InitializeComponent();
 
             var dostup = DB.Connect.connection.Доступ.Where(i => i.УчительID == ProjectClasses.TeacherClass.id).ToList();
-            var dostupID = 0;
+
             foreach (var dp in dostup)
             {
-                dostupID = dp.Класс.ID;
+                
             }
-                UsersDG.ItemsSource = DB.Connect.connection.Класс.Where(i => i.ID == dostupID).ToList();
+            //UsersDG.ItemsSource = ;
         }
 
         private void UsersDG_MouseDoubleClick(object sender, MouseButtonEventArgs e)

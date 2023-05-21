@@ -24,18 +24,18 @@ namespace journalProject.LessonsPages
         {
             InitializeComponent();
 
-            var dostup = DB.Connect.connection.Доступ.Where(i => i.УчительID == ProjectClasses.TeacherClass.id).ToList();
+            var dostup = DB.Connect.connection.Класс.Where(i => DB.Connect.connection.Доступ.Any(c => c.КлассID == i.ID && c.УчительID == ProjectClasses.TeacherClass.id)).ToList();
 
-            foreach (var dp in dostup)
-            {
-                
-            }
-            //UsersDG.ItemsSource = ;
+            UsersDG.ItemsSource = dostup;
+            UsersDG.SelectedIndex = 0;
+
         }
 
         private void UsersDG_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            var classID = (UsersDG.SelectedItem as DB.Класс).ID;
+            ProjectClasses.TeacherClass.groupID = classID;
+            NavigationService.Navigate(new LessonSubjects());
         }
     }
 }

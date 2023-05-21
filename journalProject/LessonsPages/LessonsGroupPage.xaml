@@ -29,7 +29,7 @@
                 <DataGridTemplateColumn Header="Классный руководитель">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Margin="5,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
                                 <TextBlock Text="{Binding Пользователь.Фамилия}" Margin="0,0,5,0"/>
                                 <TextBlock Text="{Binding Пользователь.Имя}" Margin="0,0,5,0"/>
                                 <TextBlock Text="{Binding Пользователь.Отчетсво}"/>

@@ -100,6 +100,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="LessonsPages\LessonsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LessonsPages\LessonSubjects.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LessonsWins\LessonWinAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LessonsWins\LessonWinEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -177,6 +193,18 @@
     </Compile>
     <Compile Include="LessonsPages\LessonsGroupPage.xaml.cs">
       <DependentUpon>LessonsGroupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LessonsPages\LessonsPage.xaml.cs">
+      <DependentUpon>LessonsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LessonsPages\LessonSubjects.xaml.cs">
+      <DependentUpon>LessonSubjects.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LessonsWins\LessonWinAdd.xaml.cs">
+      <DependentUpon>LessonWinAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LessonsWins\LessonWinEdit.xaml.cs">
+      <DependentUpon>LessonWinEdit.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -346,8 +374,6 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="LessonsWins\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

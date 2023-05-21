@@ -38,7 +38,7 @@
                     <DataGridTextColumn Header="Дата рождения" Binding="{Binding Дата_рождения, ConverterCulture=ru, StringFormat=D}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="AddGroupButton" ToolTip="Добавить" Content="Button" Height="25" Width="25" Style="{DynamicResource EditButtonMini}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="AddGroupButton_Click"/>
+            <Button x:Name="AddGroupButton" ToolTip="Изменить" Content="Button" Height="25" Width="25" Style="{DynamicResource EditButtonMini}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="AddGroupButton_Click"/>
             <ComboBox x:Name="GroupNumberCB"  HorizontalAlignment="Left" Margin="223,19,0,0" VerticalAlignment="Top" Width="37" BorderThickness="0,0,0,1">
                 <TextBlock Text="1"/>
                 <TextBlock Text="2"/>

@@ -69,5 +69,10 @@ namespace journalProject.ProjectPages
             UsersDG.ItemsSource = DB.Connect.connection.Класс.Where(i => i.Класс_рукID == ProjectClasses.TeacherClass.id).ToList();
 
         }
+
+        private void UsersDG_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

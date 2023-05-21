@@ -69,6 +69,10 @@
         </Style.Triggers>
     </Style>
     <!--TextBox-->
+    
+    <!--Кнопки оценок-->
+
+    <!--Кнопки оценок-->
 
     <!-- Кнопки -->
     <Style x:Key="AddButton" TargetType="{x:Type Button}">

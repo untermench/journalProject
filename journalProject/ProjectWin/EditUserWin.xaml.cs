@@ -95,24 +95,25 @@ namespace journalProject.ProjectWin
                     if (MessageBox.Show($"Вы действительно хотите удалить данного пользователя?",
                             "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
-                        var removeStud = DB.Connect.connection.Пользователь.FirstOrDefault(i => i.ID == removeID);
-                        var dostupGroup = DB.Connect.connection.Доступ.Where(i => i.УчительID == removeID);
-                        if (dostupGroup != null)
-                            DB.Connect.connection.Доступ.RemoveRange(dostupGroup);
-                        var teacherGroup = DB.Connect.connection.Класс.FirstOrDefault(i => i.Класс_рукID == removeID);
-                        
-                        if (teacherGroup != null)
-                        {
-
-                                teacherGroup.Класс_рукID = null;
-                        }
-
-                        var zanat = DB.Connect.connection.Занятие.FirstOrDefault(i => i.УчительID == removeID);
-                        if (zanat != null)
-                        {
-                                zanat.УчительID = 4;
-                        }
-                        DB.Connect.connection.Пользователь.Remove(removeStud);
+                        var removeUser = DB.Connect.connection.Пользователь.FirstOrDefault(i => i.ID == removeID);
+                        var dostupGroup = DB.Connect.connection.Доступ.Where(i => i.УчительID == removeID).ToList();
+                        var zanatGroup = DB.Connect.connection.Занятие.Where(i => i.УчительID == removeID).ToList();
+                    if(zanatGroup != null)
+                    {
+                        foreach (var rem in zanatGroup) rem.УчительID = null;
+                    }
+                    if (dostupGroup != null)
+                    {
+                        var remListDostup = new List<DB.Доступ> { };
+                        foreach (var rem in dostupGroup) remListDostup.Add(rem);
+                        DB.Connect.connection.Доступ.RemoveRange(remListDostup);
+                    }
+                        var teacherGroup = DB.Connect.connection.Класс.Where(i => i.Класс_рукID == removeID).ToList();
+                        if(teacherGroup != null)
+                    {
+                        foreach (var rem in teacherGroup) rem.Класс_рукID = null;
+                    }
+                        DB.Connect.connection.Пользователь.Remove(removeUser);
                         DB.Connect.connection.SaveChanges();
                         MessageBox.Show("Пользователь удален");
                         Close();

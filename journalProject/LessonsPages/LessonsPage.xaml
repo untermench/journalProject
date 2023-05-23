@@ -13,7 +13,7 @@
             <RowDefinition/>
             <RowDefinition Height="14*"/>
         </Grid.RowDefinitions>
-        <DataGrid  Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" d:ItemsSource="{d:SampleData ItemCount=5}" ToolTip="Двойной клик - редактирование данных" x:Name="UsersDG" IsReadOnly="True" Grid.Row="1">
+        <DataGrid MouseDoubleClick="UsersDG_MouseDoubleClick" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" d:ItemsSource="{d:SampleData ItemCount=5}" ToolTip="Двойной клик - редактирование данных" x:Name="UsersDG" IsReadOnly="True" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Тема" Binding="{Binding Тема.Название}"/>
                 <DataGridTextColumn Header="Дата занятия" Binding="{Binding Дата, ConverterCulture=ru, StringFormat=D}"/>
@@ -26,6 +26,13 @@
                                 <TextBlock Text="{Binding Пользователь.Имя}" Margin="0,0,5,0"/>
                                 <TextBlock Text="{Binding Пользователь.Отчетсво}"/>
                             </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="RemoveLessonButton" Click="RemoveLessonButton_Click" ToolTip="Удалить занятие" Height="20" Width="20" Style="{DynamicResource IconButtonsStyle}" Content="{DynamicResource close}" Cursor="Hand"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

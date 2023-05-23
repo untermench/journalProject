@@ -18,7 +18,7 @@
                     <DataTemplate>
                         <TextBlock>
                             <TextBlock.Text>
-                                <MultiBinding StringFormat="{} {0} {Кабинет}">
+                                <MultiBinding StringFormat="{} {0}">
                                     <Binding Path="Номер"/>
                                 </MultiBinding>
                             </TextBlock.Text>
@@ -58,9 +58,8 @@
                     <DataTemplate>
                         <TextBlock>
                             <TextBlock.Text>
-                                <MultiBinding StringFormat=" {0} {за} {1} {класс}">
+                                <MultiBinding StringFormat=" {0}">
                                     <Binding Path="Название"/>
-                                    <Binding Path="Класс"/>
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
@@ -97,7 +96,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Оценка" Binding="{Binding Оценка}"/>
+                    <DataGridTextColumn Header="Оценка" CellStyle="{DynamicResource CellStyle}" Binding="{Binding Оценка}"/>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

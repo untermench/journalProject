@@ -135,5 +135,11 @@ namespace journalProject.ProjectPages
                 UsersDG.SelectedIndex = 0;
             }
         }
+
+        private void DostupAddButton_Click(object sender, RoutedEventArgs e)
+        {
+            ProjectWin.DostupAddWin win = new ProjectWin.DostupAddWin();
+            win.ShowDialog();
+        }
     }
 }

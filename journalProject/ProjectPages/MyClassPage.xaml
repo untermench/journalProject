@@ -59,6 +59,7 @@
             <TextBox Height="18" Width="220" x:Name="SearchBox" ToolTip="Поиск" Style="{DynamicResource SearchBox}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="35,6,0,6" HorizontalAlignment="Left"/>
             <Button Visibility="Hidden" x:Name="RemoveGroupButton" Content="Параметры удаления" HorizontalAlignment="Right" VerticalAlignment="Center" Width="144" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Cursor="Hand" Click="RemoveGroupButton_Click" Style="{DynamicResource NormalButton}" Margin="0,0,174,0"/>
             <Button Click="EditButton_Click_1" x:Name="EditButton" ToolTip="Редактировать группу" Style="{DynamicResource EditButtonMini}" Height="25" Width="25" Content="Button" HorizontalAlignment="Left" Margin="260,0,0,0" VerticalAlignment="Center"/>
+            <Button x:Name="DostupAddButton" Content="Добавить преподавателя" ToolTip="Дает доступ к занятиям другим учителя" HorizontalAlignment="Left" Margin="420,0,0,0" VerticalAlignment="Center" Width="185" Height="26"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Cursor="Hand" Click="DostupAddButton_Click" Style="{DynamicResource AddButton}"/>
         </Grid>
     </Grid>
 </Page>

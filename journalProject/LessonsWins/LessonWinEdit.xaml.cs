@@ -22,7 +22,7 @@ namespace journalProject.LessonsWins
         public LessonWinEdit()
         {
             InitializeComponent();
-             /*
+            
             UsersDG.ItemsSource = DB.Connect.connection.Занятие_ученик.Where(i => i.ЗанятиеID == ProjectClasses.TeacherClass.lessonID).ToList();
 
             var group = DB.Connect.connection.Класс.FirstOrDefault(i => i.ID == ProjectClasses.TeacherClass.groupID);
@@ -42,11 +42,11 @@ namespace journalProject.LessonsWins
             GroupTeacherCB.ItemsSource = DB.Connect.connection.Пользователь.Where(i => i.Тип == 2).ToList();
 
             GroupTeacherCB.SelectedItem = teacher;
-             */
+
+            LessonDate.SelectedDate = lesson.Дата;
 
         }
 
-        public static int step = 1;
         private void UsersDG_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
@@ -103,17 +103,16 @@ namespace journalProject.LessonsWins
             var scoreID = (UsersDG.SelectedItem as DB.Занятие_ученик).ID;
             var score = DB.Connect.connection.Занятие_ученик.FirstOrDefault(i => i.ID == scoreID);
 
-            if (step == 1)
+            if (score.Присутствие == "Присутствовал")
             {
                 score.Присутствие = "Отсутствовал";
-                step = 0;
             }
             else
             {
                 score.Присутствие = "Присутствовал";
-                step = 1;
             }
             DB.Connect.connection.SaveChanges();
+            UsersDG.ItemsSource = DB.Connect.connection.Занятие_ученик.Where(i => i.ЗанятиеID == ProjectClasses.TeacherClass.lessonID).ToList();
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -141,6 +140,12 @@ namespace journalProject.LessonsWins
 
         private void AddGroupButton_Click(object sender, RoutedEventArgs e)
         {
+            var lesson = DB.Connect.connection.Занятие.FirstOrDefault(i => i.ID == ProjectClasses.TeacherClass.lessonID);
+            lesson.КабинетID = ((DB.Кабинет)LessonCabintCB.SelectedItem).ID;
+            lesson.УчительID = ((DB.Пользователь)GroupTeacherCB.SelectedItem).ID;
+            lesson.ТемаID = ((DB.Тема)LessosThemeCB.SelectedItem).ID;
+            DB.Connect.connection.SaveChanges();
+            Close();
 
         }
     }

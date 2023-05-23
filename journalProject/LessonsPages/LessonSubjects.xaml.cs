@@ -39,5 +39,19 @@ namespace journalProject.LessonsPages
             ProjectClasses.TeacherClass.selectedLessonItemID = itemID;
             NavigationService.Navigate(new LessonsPage());
         }
+
+        private void RemoveSubject_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show($"Данный доступ к предмету будет удален. Вы действительно желаете этого?",
+                        "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                var itemID = (UsersDG.SelectedItem as DB.Предмет).ID;
+
+                var dostup = DB.Connect.connection.Доступ.FirstOrDefault(i => i.УчительID == ProjectClasses.TeacherClass.id && i.ПредметID == itemID && i.КлассID == ProjectClasses.TeacherClass.groupID);
+                DB.Connect.connection.Доступ.Remove(dostup);
+                DB.Connect.connection.SaveChanges();
+                UsersDG.ItemsSource = DB.Connect.connection.Предмет.Where(i => DB.Connect.connection.Доступ.Any(j => j.ПредметID == i.ID && j.УчительID == ProjectClasses.TeacherClass.id && j.КлассID == ProjectClasses.TeacherClass.groupID)).ToList();
+            }
+        }
     }
 }

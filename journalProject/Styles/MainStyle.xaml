@@ -425,5 +425,28 @@
         </Setter>
     </Style>
     <!-- RadioButton -->
-    
+
+    <Style x:Key="CellStyle" TargetType="DataGridCell">
+        <Style.Setters>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Margin" Value="30 0 0 0"/>
+        </Style.Setters>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Оценка}" Value="5">
+                <Setter Property="Foreground" Value="Green"></Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Оценка}" Value="4">
+                <Setter Property="Foreground" Value="#fde910"></Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Оценка}" Value="3">
+                <Setter Property="Foreground" Value="Orange"></Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Оценка}" Value="2">
+                <Setter Property="Foreground" Value="Red"></Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
 </ResourceDictionary>

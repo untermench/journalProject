@@ -62,7 +62,7 @@ namespace journalProject.LessonsWins
 
         private void AddGroupButton_Click(object sender, RoutedEventArgs e)
         {
-            LessonWinEdit win = new LessonWinEdit();
+
             if (LessonCabintCB.Text != "".Trim() || GroupTeacherCB.Text != "".Trim() || LessosThemeCB.Text != "".Trim() || LessonDate.SelectedDate != null)
             {
                 var zanat = new DB.Занятие();
@@ -74,17 +74,16 @@ namespace journalProject.LessonsWins
                 zanat.Дата = (DateTime)LessonDate.SelectedDate;
                 DB.Connect.connection.Занятие.Add(zanat);
                 DB.Connect.connection.SaveChanges();
-                var groupLesson = new DB.Занятие_ученик();
-                var groupStudent = DB.Connect.connection.Ученик.Where(i => i.КлассID == ProjectClasses.TeacherClass.groupID);
+                var groupStudent = DB.Connect.connection.Ученик.Where(i => i.КлассID == ProjectClasses.TeacherClass.groupID).ToList();
                 List<DB.Занятие_ученик> listik = new List<DB.Занятие_ученик> { };
                 foreach (var student in groupStudent)
                 {
-                        groupLesson.УченикID = student.ID;
-                        groupLesson.ЗанятиеID = zanat.ID;
-                        groupLesson.Оценка = null;
-                        groupLesson.Присутствие = "Присутствовал";
-                        listik.Add(groupLesson);
-                    MessageBox.Show(listik.ToString());
+                    var groupLesson = new DB.Занятие_ученик();
+                    groupLesson.УченикID = student.ID;
+                    groupLesson.ЗанятиеID = zanat.ID;
+                    groupLesson.Оценка = null;
+                    groupLesson.Присутствие = "Присутствовал";
+                    listik.Add(groupLesson);
                 }
                 DB.Connect.connection.Занятие_ученик.AddRange(listik);
                 try
@@ -92,7 +91,8 @@ namespace journalProject.LessonsWins
                     ProjectClasses.TeacherClass.lessonID = zanat.ID;
                     DB.Connect.connection.SaveChanges();
                     MessageBox.Show("Занятие создано");
-                   // win.Show();
+                    LessonWinEdit win = new LessonWinEdit();
+                    win.Show();
                     Close();
                 }
                 catch

@@ -60,9 +60,10 @@ namespace journalProject.AdminWins
                 if (MessageBox.Show($"Данный класс будет расформирован. Вы действительно уверены в этом?",
                         "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    var student = DB.Connect.connection.Ученик.FirstOrDefault(i => i.КлассID == ProjectClasses.TeacherClass.groupID);
                     var group = DB.Connect.connection.Класс.FirstOrDefault(i => i.ID == ProjectClasses.TeacherClass.groupID);
-                    student.КлассID = null;
+                    var student = DB.Connect.connection.Ученик.Where(i => i.КлассID == ProjectClasses.TeacherClass.groupID);
+                    foreach(var item in student)
+                    item.КлассID = null;
                     DB.Connect.connection.Класс.Remove(group);
                     DB.Connect.connection.SaveChanges();
                     Close();

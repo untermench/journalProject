@@ -24,6 +24,13 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="RemoveSubject" Click="RemoveSubject_Click" Height="20" Width="20" Cursor="Hand" ToolTip="Удалить доступ" Style="{DynamicResource IconButtonsStyle}" Content="{DynamicResource close}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 

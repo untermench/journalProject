@@ -37,5 +37,24 @@ namespace journalProject.LessonsPages
             ProjectClasses.TeacherClass.groupID = classID;
             NavigationService.Navigate(new LessonSubjects());
         }
+
+        private void RemoveGroupDostup_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show($"Даннsq доступ к группе будет удалено. Вы действительно хотите удалить его?",
+                        "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                var dostupID = (UsersDG.SelectedItem as DB.Класс).ID;
+                var dostup = DB.Connect.connection.Доступ.Where(i => i.УчительID == ProjectClasses.TeacherClass.id && i.КлассID == dostupID).ToList();
+                var removeList = new List<DB.Доступ> { };
+                foreach(var rem in dostup)
+                {
+                    removeList.Add(rem);
+                }
+                DB.Connect.connection.Доступ.RemoveRange(removeList);
+                DB.Connect.connection.SaveChanges();
+
+                UsersDG.ItemsSource = DB.Connect.connection.Класс.Where(i => DB.Connect.connection.Доступ.Any(c => c.КлассID == i.ID && c.УчительID == ProjectClasses.TeacherClass.id)).ToList();
+            }
+        }
     }
 }

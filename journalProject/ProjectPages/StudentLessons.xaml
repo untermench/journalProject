@@ -18,7 +18,7 @@
                 <DataGridTextColumn Header="Тема" Binding="{Binding Занятие.Тема.Название}"/>
                 <DataGridTextColumn Header="Дата занятия" Binding="{Binding Занятие.Дата, ConverterCulture=ru, StringFormat=D}"/>
                 <DataGridTextColumn Header="Кабинет" Binding="{Binding Занятие.Кабинет.Номер}"/>
-                <DataGridTextColumn x:Name="ocenka" Header="Оценка" Binding="{Binding Оценка}"/>
+                <DataGridTextColumn x:Name="ocenka" CellStyle="{DynamicResource CellStyle}" Header="Оценка" Binding="{Binding Оценка}"/>
                 <DataGridTemplateColumn Header="Преподаватель">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -30,6 +30,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Присутствие" Binding="{Binding Присутствие}"/>
             </DataGrid.Columns>
         </DataGrid>
 

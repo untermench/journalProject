@@ -238,6 +238,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ProjectWin\DostupAddWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ProjectWin\EditGroupWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -301,6 +305,9 @@
     </Compile>
     <Compile Include="ProjectWin\AdminWin.xaml.cs">
       <DependentUpon>AdminWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectWin\DostupAddWin.xaml.cs">
+      <DependentUpon>DostupAddWin.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProjectWin\EditGroupWin.xaml.cs">
       <DependentUpon>EditGroupWin.xaml</DependentUpon>

@@ -24,6 +24,8 @@ namespace journalProject.ProjectPages
         {
             InitializeComponent();
             UsersDG.ItemsSource = DB.Connect.connection.Занятие_ученик.Where(i => i.УченикID == ProjectClasses.TeacherClass.selectedStudID && i.Занятие.ПредметID == ProjectClasses.TeacherClass.selectedLessonItemID).ToList();
+            UsersDG.SelectedIndex = 0;
+
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)

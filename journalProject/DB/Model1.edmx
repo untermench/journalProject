@@ -33,7 +33,7 @@
           <Property Name="ПредметID" Type="int" Nullable="false" />
           <Property Name="УчительID" Type="int" />
           <Property Name="Дата" Type="date" Nullable="false" />
-          <Property Name="КабинетID" Type="int" Nullable="false" />
+          <Property Name="КабинетID" Type="int" />
           <Property Name="ТемаID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Занятие_ученик">
@@ -146,7 +146,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Занятие_Кабинет">
-          <End Role="Кабинет" Type="Self.Кабинет" Multiplicity="1" />
+          <End Role="Кабинет" Type="Self.Кабинет" Multiplicity="0..1" />
           <End Role="Занятие" Type="Self.Занятие" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Кабинет">
@@ -382,7 +382,7 @@
           <Property Name="ПредметID" Type="Int32" Nullable="false" />
           <Property Name="УчительID" Type="Int32" />
           <Property Name="Дата" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="КабинетID" Type="Int32" Nullable="false" />
+          <Property Name="КабинетID" Type="Int32" />
           <Property Name="ТемаID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Кабинет" Relationship="Self.FK_Занятие_Кабинет" FromRole="Занятие" ToRole="Кабинет" />
           <NavigationProperty Name="Предмет" Relationship="Self.FK_Занятие_Предмет" FromRole="Занятие" ToRole="Предмет" />
@@ -520,7 +520,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Занятие_Кабинет">
-          <End Role="Кабинет" Type="Self.Кабинет" Multiplicity="1" />
+          <End Role="Кабинет" Type="Self.Кабинет" Multiplicity="0..1" />
           <End Role="Занятие" Type="Self.Занятие" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Кабинет">

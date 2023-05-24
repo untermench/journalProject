@@ -62,6 +62,7 @@ namespace journalProject.ProjectPages
             ProjectClasses.TeacherClass.selectedStudID = stud.ID;
             AdminWins.StudentEdit win = new AdminWins.StudentEdit();
             win.ShowDialog();
+            UsersDG.ItemsSource = DB.Connect.connection.Ученик.Where(i => i.КлассID == ProjectClasses.TeacherClass.groupID).ToList();
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)

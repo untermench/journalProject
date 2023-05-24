@@ -40,9 +40,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Grid Background="{DynamicResource SecundaryBackgroundColor}">
-            <TextBox Style="{DynamicResource SearchBox}" Height="18" Width="220" x:Name="SearchBox" ToolTip="Поиск" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="10,6,0,6" HorizontalAlignment="Left" />
-        </Grid>
+        <Grid Background="{DynamicResource SecundaryBackgroundColor}"/>
         <Button Visibility="Hidden" x:Name="GroupAddButton" Style="{DynamicResource AddButton}" Width="155" Height="25" Content="Создать новую группу" Margin="0,0,15,0" HorizontalAlignment="Right" Click="GroupAddButton_Click"/>
         <Button Visibility="Hidden" x:Name="GroupButton" Style="{DynamicResource AddButton}" Width="155" Height="25" Content="Взять руководство" Margin="0,0,15,0" HorizontalAlignment="Right" Click="GroupButton_Click" Cursor="Hand"/>
     </Grid>

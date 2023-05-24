@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:journalProject.LessonsWins"
-         mc:Ignorable="d"
+        mc:Ignorable="d"
         WindowStartupLocation="CenterScreen" WindowStyle="None" 
         Background="Transparent" AllowsTransparency="True"
         ResizeMode="CanResize" WindowState="Normal" 
@@ -70,13 +70,6 @@
             <TextBlock HorizontalAlignment="Left" Margin="176,45,0,0" TextWrapping="Wrap" Text="Дата занятия" ToolTip="Не обязательно для заполнения" VerticalAlignment="Top" FontSize="8" Foreground="#FF949494"/>
             <DataGrid MouseDoubleClick="UsersDG_MouseDoubleClick" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" d:ItemsSource="{d:SampleData ItemCount=10}" ToolTip="Двойной клик - редактирование данных" x:Name="UsersDG" IsReadOnly="True" Margin="0,88,0,0">
                 <DataGrid.Columns>
-                    <DataGridCheckBoxColumn ElementStyle="{DynamicResource CheckBoxStyle}">
-                        <DataGridCheckBoxColumn.HeaderTemplate>
-                            <DataTemplate>
-                                <CheckBox x:Name="SelectAll" Style="{DynamicResource CheckBoxStyle}" HorizontalAlignment="Right" Margin="0,0,0,0"/>
-                            </DataTemplate>
-                        </DataGridCheckBoxColumn.HeaderTemplate>
-                    </DataGridCheckBoxColumn>
                     <DataGridTemplateColumn Header="Ученик">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -112,8 +105,8 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <TextBox Height="18" Width="159" x:Name="SearchBox" ToolTip="Поиск" Style="{DynamicResource SearchBox}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="45,16,0,534" HorizontalAlignment="Left"/>
             <Button x:Name="AddGroupButton" ToolTip="Добавить" Content="Button" Height="25" Width="25" Style="{DynamicResource EditButtonMini}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="AddGroupButton_Click"/>
+            <Button x:Name="AddTheme" ToolTip="Создать тему занятия" Content="Button" Height="25" Width="25" Style="{DynamicResource AddButtonMini}" HorizontalAlignment="Left" Margin="470,58,0,0" VerticalAlignment="Top" Click="AddTheme_Click"/>
         </Grid>
     </Border>
 </Window>

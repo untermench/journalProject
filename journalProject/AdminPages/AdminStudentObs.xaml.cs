@@ -23,8 +23,7 @@ namespace journalProject.AdminPages
         public AdminStudentObs()
         {
             InitializeComponent();
-            UsersDG.ItemsSource = DB.Connect.connection.Ученик.ToList();
-            UsersDG.SelectedIndex = 0;
+            Update();
         }
 
         private void UsersDG_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -40,8 +39,7 @@ namespace journalProject.AdminPages
         {
             AdminWins.StudentCreateWin win = new AdminWins.StudentCreateWin();
             win.ShowDialog();
-            UsersDG.ItemsSource = DB.Connect.connection.Ученик.ToList();
-            UsersDG.SelectedIndex = 0;
+            Update();
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -51,6 +49,19 @@ namespace journalProject.AdminPages
             ProjectClasses.TeacherClass.selectedStudID = stud.ID;
             AdminWins.StudentEdit win = new AdminWins.StudentEdit();
             win.ShowDialog();
+            Update();
+        }
+
+        private void Update()
+        {
+            var search = DB.Connect.connection.Ученик.ToList();
+            search = search.Where(i => i.Фамилия.ToLower().Contains(SearchBox.Text.ToLower().Trim())).ToList();
+            UsersDG.ItemsSource = search.OrderBy(i => i.Фамилия).ToList();
+            UsersDG.SelectedIndex = 0;
+        }
+        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Update();
         }
     }
 }

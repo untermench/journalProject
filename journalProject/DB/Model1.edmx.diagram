@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="30aa7324643f4bc98aed0f726a1ce82d" Name="Diagram1">
+      <Diagram DiagramId="d509cae9e1cc457e8bf7a2302af77550" Name="Diagram1">
         <EntityTypeShape EntityType="journalDBModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="journalDBModel.Доступ" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="journalDBModel.Занятие" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />

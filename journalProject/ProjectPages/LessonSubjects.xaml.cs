@@ -24,6 +24,7 @@ namespace journalProject.ProjectPages
         {
             InitializeComponent();
             UsersDG.ItemsSource = DB.Connect.connection.Предмет.ToList();
+            UsersDG.SelectedIndex = 0;
 
         }
 

@@ -62,8 +62,10 @@ namespace journalProject.AdminWins
                 {
                     var group = DB.Connect.connection.Класс.FirstOrDefault(i => i.ID == ProjectClasses.TeacherClass.groupID);
                     var student = DB.Connect.connection.Ученик.Where(i => i.КлассID == ProjectClasses.TeacherClass.groupID);
-                    foreach(var item in student)
-                    item.КлассID = null;
+                    foreach (var item in student)
+                    {
+                        item.КлассID = null;
+                    }
                     DB.Connect.connection.Класс.Remove(group);
                     DB.Connect.connection.SaveChanges();
                     Close();

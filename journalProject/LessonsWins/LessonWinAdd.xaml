@@ -69,6 +69,7 @@
             </ComboBox>
             <TextBlock HorizontalAlignment="Left" Margin="290,0,0,0" TextWrapping="Wrap" Text="Тема занятия" ToolTip="Не обязательно для заполнения" VerticalAlignment="Center" FontSize="8" Foreground="#FF949494"/>
             <TextBlock HorizontalAlignment="Left" Margin="176,45,0,0" TextWrapping="Wrap" Text="Дата занятия" ToolTip="Не обязательно для заполнения" VerticalAlignment="Top" FontSize="8" Foreground="#FF949494"/>
+            <Button x:Name="AddTheme" ToolTip="Создать тему занятия" Content="Button" Height="25" Width="25" Style="{DynamicResource AddButtonMini}" HorizontalAlignment="Left" Margin="470,59,0,0" VerticalAlignment="Top" Click="AddTheme_Click"/>
         </Grid>
     </Border>
 </Window>

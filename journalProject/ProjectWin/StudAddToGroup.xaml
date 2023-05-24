@@ -11,19 +11,11 @@
         Title="AddGroupWin" Height="321" Width="500">
     <Border CornerRadius="8" Background="#EEEEEE">
         <Grid Background="Transparent">
-            <TextBox Height="18" Width="160" x:Name="SearchBox" ToolTip="Поиск" Style="{DynamicResource SearchBox}"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="50,22,0,280" HorizontalAlignment="Left"/>
 
             <Button x:Name="btnClose" Style="{StaticResource IconButtonsStyle}" Content="{DynamicResource close}" Click="btnClose_Click" Tag="IsCloseButton" Cursor="Hand" Margin="465,10,10,0" VerticalAlignment="Top"/>
 
             <DataGrid x:Name="StudentDG" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" d:ItemsSource="{d:SampleData ItemCount=7}" Margin="0,50,0,0">
                 <DataGrid.Columns>
-                    <DataGridCheckBoxColumn ElementStyle="{DynamicResource CheckBoxStyle}">
-                        <DataGridCheckBoxColumn.HeaderTemplate>
-                            <DataTemplate>
-                                <CheckBox Style="{DynamicResource CheckBoxStyle}" HorizontalAlignment="Right" Margin="0,0,0,0"/>
-                            </DataTemplate>
-                        </DataGridCheckBoxColumn.HeaderTemplate>
-                    </DataGridCheckBoxColumn>
                     <DataGridTemplateColumn Header="Ученик">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

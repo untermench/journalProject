@@ -15,13 +15,6 @@
         </Grid.RowDefinitions>
         <DataGrid MouseDoubleClick="UsersDG_MouseDoubleClick" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" d:ItemsSource="{d:SampleData ItemCount=5}" ToolTip="Двойной клик - редактирование данных" x:Name="UsersDG" IsReadOnly="True" Grid.Row="1">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn ElementStyle="{DynamicResource CheckBoxStyle}">
-                    <DataGridCheckBoxColumn.HeaderTemplate>
-                        <DataTemplate>
-                            <CheckBox x:Name="SelectAll" Style="{DynamicResource CheckBoxStyle}" HorizontalAlignment="Right" Margin="0,0,0,0"/>
-                        </DataTemplate>
-                    </DataGridCheckBoxColumn.HeaderTemplate>
-                </DataGridCheckBoxColumn>
                 <DataGridTemplateColumn Header="Ученик">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -55,11 +48,9 @@
             <Button x:Name="BackButton" Click="BackButton_Click" ToolTip="Вернуться" Style="{StaticResource IconButtonsStyle}" Content="{DynamicResource back}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Width="20"/>
             <Button x:Name="StudAddButton" Content="Добавить ученика" HorizontalAlignment="Right" Margin="0,0,15,0" VerticalAlignment="Center" Width="145" Height="25"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Cursor="Hand" Click="StudAddButton_Click" Style="{DynamicResource AddButton}"/>
             <Button Visibility="Hidden" x:Name="OtkazButton" Content="Отказаться от класса" HorizontalAlignment="Right" Margin="0,0,174,0" VerticalAlignment="Center" Width="145" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Cursor="Hand" Click="OtkazButton_Click" Style="{DynamicResource NormalButton}"/>
-
-            <TextBox Height="18" Width="220" x:Name="SearchBox" ToolTip="Поиск" Style="{DynamicResource SearchBox}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="35,6,0,6" HorizontalAlignment="Left"/>
             <Button Visibility="Hidden" x:Name="RemoveGroupButton" Content="Параметры удаления" HorizontalAlignment="Right" VerticalAlignment="Center" Width="144" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Cursor="Hand" Click="RemoveGroupButton_Click" Style="{DynamicResource NormalButton}" Margin="0,0,174,0"/>
-            <Button Click="EditButton_Click_1" x:Name="EditButton" ToolTip="Редактировать группу" Style="{DynamicResource EditButtonMini}" Height="25" Width="25" Content="Button" HorizontalAlignment="Left" Margin="260,0,0,0" VerticalAlignment="Center"/>
-            <Button x:Name="DostupAddButton" Content="Добавить преподавателя" ToolTip="Дает доступ к занятиям другим учителя" HorizontalAlignment="Left" Margin="420,0,0,0" VerticalAlignment="Center" Width="185" Height="26"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Cursor="Hand" Click="DostupAddButton_Click" Style="{DynamicResource AddButton}"/>
+            <Button Click="EditButton_Click_1" x:Name="EditButton" ToolTip="Редактировать группу" Style="{DynamicResource EditButtonMini}" Height="25" Width="25" Content="Button" HorizontalAlignment="Left" Margin="35,0,0,0" VerticalAlignment="Center"/>
+            <Button x:Name="DostupAddButton" Content="Доступ" ToolTip="Дает доступ к занятиям другим учителям" HorizontalAlignment="Left" VerticalAlignment="Center" Width="86" Height="26"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Cursor="Hand" Click="DostupAddButton_Click" Style="{DynamicResource AddButton}" Margin="70,0,0,0"/>
         </Grid>
     </Grid>
 </Page>

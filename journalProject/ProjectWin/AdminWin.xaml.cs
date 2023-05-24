@@ -83,5 +83,16 @@ namespace journalProject.ProjectWin
             PagesFrame.Navigate(new AdminPages.AdminStudentObs());
 
         }
+
+        private void OtherRB_Checked(object sender, RoutedEventArgs e)
+        {
+            PagesFrame.Navigate(new AdminPages.LessonItemPage());
+        }
+
+        private void Cabinets_Checked(object sender, RoutedEventArgs e)
+        {
+            CabintWin win = new CabintWin();
+            win.ShowDialog();
+        }
     }
 }

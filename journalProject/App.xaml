@@ -14,10 +14,6 @@
                 <ResourceDictionary Source="Styles/MainStyle.xaml"/>
 
                 <ResourceDictionary Source="Styles/DataGridStyle.xaml"/>
-
-                <ResourceDictionary Source="Styles/СhecBoxStyle.xaml"/>
-
-
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

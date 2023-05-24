@@ -72,6 +72,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AdminPages\ClassesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminPages\LessonItemPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminPages\ThemesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AdminWins\AdminAddWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -81,6 +93,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AdminWins\GroupSelectTeacher.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminWins\LessonItemAddWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminWins\LessonItemEditWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminWins\LessonThemeAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminWins\LessonThemeEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -123,6 +151,15 @@
     <Compile Include="AdminPages\AdminStudentObs.xaml.cs">
       <DependentUpon>AdminStudentObs.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AdminPages\ClassesPage.xaml.cs">
+      <DependentUpon>ClassesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\LessonItemPage.xaml.cs">
+      <DependentUpon>LessonItemPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\ThemesPage.xaml.cs">
+      <DependentUpon>ThemesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AdminWins\AdminAddWin.xaml.cs">
       <DependentUpon>AdminAddWin.xaml</DependentUpon>
     </Compile>
@@ -131,6 +168,18 @@
     </Compile>
     <Compile Include="AdminWins\GroupSelectTeacher.xaml.cs">
       <DependentUpon>GroupSelectTeacher.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWins\LessonItemAddWin.xaml.cs">
+      <DependentUpon>LessonItemAddWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWins\LessonItemEditWin.xaml.cs">
+      <DependentUpon>LessonItemEditWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWins\LessonThemeAdd.xaml.cs">
+      <DependentUpon>LessonThemeAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWins\LessonThemeEdit.xaml.cs">
+      <DependentUpon>LessonThemeEdit.xaml</DependentUpon>
     </Compile>
     <Compile Include="AdminWins\StudentCreateWin.xaml.cs">
       <DependentUpon>StudentCreateWin.xaml</DependentUpon>
@@ -238,6 +287,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ProjectWin\CabintWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ProjectWin\DostupAddWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -274,10 +327,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Styles\СhecBoxStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Themes\LightTheme.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -305,6 +354,9 @@
     </Compile>
     <Compile Include="ProjectWin\AdminWin.xaml.cs">
       <DependentUpon>AdminWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectWin\CabintWin.xaml.cs">
+      <DependentUpon>CabintWin.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProjectWin\DostupAddWin.xaml.cs">
       <DependentUpon>DostupAddWin.xaml</DependentUpon>
@@ -381,6 +433,5 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

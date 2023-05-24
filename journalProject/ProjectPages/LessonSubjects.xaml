@@ -28,7 +28,6 @@
         </DataGrid>
 
         <Grid Background="{DynamicResource SecundaryBackgroundColor}">
-            <TextBox Height="18" Width="220" x:Name="SearchBox" ToolTip="Поиск" Style="{DynamicResource SearchBox}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="35,6,0,6" HorizontalAlignment="Left"/>
             <Button x:Name="BackButton" Click="BackButton_Click" ToolTip="Вернуться" Style="{StaticResource IconButtonsStyle}" Content="{DynamicResource back}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Width="20"/>
         </Grid>
     </Grid>

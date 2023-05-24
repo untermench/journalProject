@@ -25,7 +25,7 @@ namespace journalProject.DB
         public int ПредметID { get; set; }
         public Nullable<int> УчительID { get; set; }
         public System.DateTime Дата { get; set; }
-        public int КабинетID { get; set; }
+        public Nullable<int> КабинетID { get; set; }
         public int ТемаID { get; set; }
     
         public virtual Кабинет Кабинет { get; set; }

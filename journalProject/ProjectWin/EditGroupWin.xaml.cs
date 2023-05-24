@@ -47,7 +47,7 @@ namespace journalProject.ProjectWin
             group.Номер = Convert.ToInt32(GroupNumberCB.Text);
             group.Префикс = GroupPrefixCB.Text;
 
-            if(((DB.Пользователь)GroupTeacherCB.SelectedItem).ID != group.Класс_рукID)
+            if(((DB.Пользователь)GroupTeacherCB.SelectedItem).ID != group.Класс_рукID || group.Класс_рукID == null)
             {
                 if (MessageBox.Show($"Подтвердить передачу группы?",
                         "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)

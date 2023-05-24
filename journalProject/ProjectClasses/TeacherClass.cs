@@ -9,6 +9,7 @@ namespace journalProject.ProjectClasses
     public class TeacherClass
     {
         public static int id;
+
         public static int schoID;
 
         public static int adminUserEditID;
@@ -22,5 +23,10 @@ namespace journalProject.ProjectClasses
         public static int studSelectionMode;
 
         public static int lessonID;
+
+        public static int lesclasit;
+
+        public static int themeID;
+
     }
 }

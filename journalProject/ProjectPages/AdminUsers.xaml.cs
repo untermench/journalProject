@@ -25,20 +25,9 @@ namespace journalProject.ProjectPages
         public AdminUsers()
         {
             InitializeComponent();
-            UsersDG.ItemsSource = DB.Connect.connection.Пользователь.ToList();
-            UsersDG.SelectedIndex = 0;
-
-            System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
-
-            timer.Tick += new EventHandler(timerTick);
-            timer.Interval = new TimeSpan(0, 0, 15);
-            timer.Start();
-        }
-
-        private void timerTick(object sender, EventArgs e)
-        {
             Update();
         }
+
 
         private void UsersDG_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -51,6 +40,7 @@ namespace journalProject.ProjectPages
                     ProjectClasses.TeacherClass.adminUserEditID = removeStud.ID;
                     ProjectWin.EditUserWin win = new ProjectWin.EditUserWin();
                     win.ShowDialog();
+                    Update();
                 }
                 else
                 {
@@ -64,23 +54,18 @@ namespace journalProject.ProjectPages
         {
             AdminWins.AdminAddWin win = new AdminWins.AdminAddWin();
             win.ShowDialog();
-            UsersDG.ItemsSource = DB.Connect.connection.Пользователь.ToList();
+            Update();
         }
 
         private void Update()
         {
-            ICollectionView dataView = CollectionViewSource.GetDefaultView(UsersDG.ItemsSource);
-            dataView.Filter = item =>
-            {
-                DB.Пользователь user = item as DB.Пользователь;
-                if (user != null)
-                {
-                    string searchText = SearchBox.Text.Trim().ToLower();
-                    return user.Имя.ToLower().Contains(searchText) || user.Фамилия.ToLower().Contains(searchText);
-                }
-                return false;
-            };
+            var search = DB.Connect.connection.Пользователь.ToList();
+            search = search.Where(i => i.Фамилия.ToLower().Contains(SearchBox.Text.ToLower().Trim()) || i.Имя.ToLower().Contains(SearchBox.Text.ToLower().Trim()) || i.Почта.ToLower().Contains(SearchBox.Text.ToLower().Trim()) || i.Отчетсво.ToLower().Contains(SearchBox.Text.ToLower().Trim())).ToList();
+
+            UsersDG.ItemsSource = search.OrderBy(i => i.Фамилия).ToList();
+            UsersDG.SelectedIndex = 0;
         }
+
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             Update();

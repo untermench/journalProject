@@ -148,5 +148,17 @@ namespace journalProject.LessonsWins
             Close();
 
         }
+
+        private void AddTheme_Click(object sender, RoutedEventArgs e)
+        {
+            ProjectClasses.TeacherClass.lesclasit = DB.Connect.connection.Класс.FirstOrDefault(i => i.ID == ProjectClasses.TeacherClass.groupID).Номер;
+            AdminWins.LessonThemeAdd win = new AdminWins.LessonThemeAdd();
+            win.ShowDialog();
+            LessosThemeCB.SelectedItem = null;
+            var group = DB.Connect.connection.Класс.FirstOrDefault(i => i.ID == ProjectClasses.TeacherClass.groupID);
+            LessosThemeCB.ItemsSource = DB.Connect.connection.Тема.Where(i => i.ПредиетID == ProjectClasses.TeacherClass.selectedLessonItemID && i.Класс == group.Номер.ToString()).ToList();
+            var item = DB.Connect.connection.Тема.FirstOrDefault(i => i.ID == ProjectClasses.TeacherClass.themeID);
+            if (item != null) LessosThemeCB.SelectedItem = item;
+        }
     }
 }

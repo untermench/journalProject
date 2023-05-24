@@ -15,7 +15,6 @@
         </Grid.RowDefinitions>
         <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" d:ItemsSource="{d:SampleData ItemCount=5}" ToolTip="Двойной клик - редактирование данных" MouseDoubleClick="UsersDG_MouseDoubleClick" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" CanUserSortColumns="False" AutoGenerateColumns="False" x:Name="UsersDG" IsReadOnly="True" Grid.Row="1">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
                 <DataGridTextColumn Header="Фамилия" Binding="{Binding Фамилия}"/>
                 <DataGridTextColumn Header="Имя" Binding="{Binding Имя}"/>
                 <DataGridTextColumn Header="Отчество" Binding="{Binding Отчетсво}"/>

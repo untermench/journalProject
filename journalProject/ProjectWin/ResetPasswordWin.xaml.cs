@@ -45,7 +45,7 @@ namespace journalProject.ProjectWin
                     }
                     pas = res.ToString();
 
-                    MailAddress from = new MailAddress("k_aguero@list.ru", "Учет обучающихся колледжа");
+                    MailAddress from = new MailAddress("k_aguero@list.ru", "Система электронного журнала: Эл.Жур");
                     MailAddress to = new MailAddress(mailBox.Text);
                     MailMessage m = new MailMessage(from, to);
                     m.Subject = "Восстановление пароля";
@@ -111,6 +111,11 @@ namespace journalProject.ProjectWin
                 MessageBox.Show("Ошибка" + ex.Message);
             }
 
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -23,11 +23,7 @@ namespace journalProject.LessonsPages
         public LessonsGroupPage()
         {
             InitializeComponent();
-
-            var dostup = DB.Connect.connection.Класс.Where(i => DB.Connect.connection.Доступ.Any(c => c.КлассID == i.ID && c.УчительID == ProjectClasses.TeacherClass.id)).ToList();
-
-            UsersDG.ItemsSource = dostup;
-            UsersDG.SelectedIndex = 0;
+            Update();
 
         }
 
@@ -53,8 +49,22 @@ namespace journalProject.LessonsPages
                 DB.Connect.connection.Доступ.RemoveRange(removeList);
                 DB.Connect.connection.SaveChanges();
 
-                UsersDG.ItemsSource = DB.Connect.connection.Класс.Where(i => DB.Connect.connection.Доступ.Any(c => c.КлассID == i.ID && c.УчительID == ProjectClasses.TeacherClass.id)).ToList();
+                Update();
             }
         }
+
+        private void Update()
+        {
+            var search = DB.Connect.connection.Класс.ToList();
+            search = search.Where(i => i.Префикс.ToLower().Contains(SearchBox.Text.ToLower().Trim()) && DB.Connect.connection.Доступ.Any(c => c.КлассID == i.ID && c.УчительID == ProjectClasses.TeacherClass.id)).ToList();
+            UsersDG.ItemsSource = search.OrderBy(i => i.Префикс).ToList();
+            UsersDG.SelectedIndex = 0;
+        }
+
+        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Update();
+        }
+
     }
 }

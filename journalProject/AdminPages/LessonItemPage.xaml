@@ -1,4 +1,4 @@
-﻿<Page x:Class="journalProject.AdminPages.AdminStudentObs"
+﻿<Page x:Class="journalProject.AdminPages.LessonItemPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:journalProject.AdminPages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AdminStudentObs">
+      Title="LessonItemPage">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -15,24 +15,11 @@
         </Grid.RowDefinitions>
         <DataGrid MouseDoubleClick="UsersDG_MouseDoubleClick" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" d:ItemsSource="{d:SampleData ItemCount=5}" ToolTip="Двойной клик - редактирование данных" x:Name="UsersDG" IsReadOnly="True" Grid.Row="1">
             <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Ученик">
+                <DataGridTemplateColumn Header="Предмет">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Фамилия}" Margin="0,0,5,0"/>
-                                <TextBlock Text="{Binding Имя}" Margin="0,0,5,0"/>
-                                <TextBlock Text="{Binding Отчество}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Дата рождения" Binding="{Binding Дата_рождения, ConverterCulture=ru, StringFormat=D}"/>
-                <DataGridTemplateColumn Header="Группа">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Margin="5,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock Text="{Binding Класс.Номер}" Margin="0,0,5,0"/>
-                                <TextBlock Text="{Binding Класс.Префикс}" Margin="0,0,5,0"/>
+                                <TextBlock Text="{Binding Наименование}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -40,7 +27,14 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="EditButton" Click="EditButton_Click" Style="{StaticResource IconButtonsStyle}" Height="20" Width="20" BorderThickness="0" ToolTip="Редактирование" Content="{DynamicResource  edit}" Cursor="Hand"/>
+                            <Button x:Name="EditSubject" Click="EditSubject_Click" Height="20" Width="20" Cursor="Hand" ToolTip="Удалить доступ" Style="{DynamicResource IconButtonsStyle}" Content="{DynamicResource edit}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="RemoveSubject" Click="RemoveSubject_Click" Height="20" Width="20" Cursor="Hand" ToolTip="Удалить доступ" Style="{DynamicResource IconButtonsStyle}" Content="{DynamicResource close}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -48,9 +42,8 @@
         </DataGrid>
 
         <Grid Background="{DynamicResource SecundaryBackgroundColor}">
-            <Button x:Name="StudAddButton" Content="Добавить нового ученика" HorizontalAlignment="Left" Margin="609,0,0,0" VerticalAlignment="Center" Width="176" Height="26"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Cursor="Hand" Click="StudAddButton_Click" Style="{DynamicResource AddButton}"/>
-            <TextBox Width="220" x:Name="SearchBox" ToolTip="Поиск" Style="{DynamicResource SearchBox}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="10,6,0,6" HorizontalAlignment="Left" TextChanged="SearchBox_TextChanged"/>
+            <TextBox Height="18" Width="220" x:Name="SearchBox" ToolTip="Поиск" Style="{DynamicResource SearchBox}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="10,6,0,6" HorizontalAlignment="Left" TextChanged="SearchBox_TextChanged"/>
+            <Button x:Name="lessonItemAddButton" Style="{DynamicResource AddButton}" Content="Новый предмет" HorizontalAlignment="Left" Margin="645,0,0,0" VerticalAlignment="Center" Height="26" Width="140" Click="lessonItemAddButton_Click"/>
         </Grid>
     </Grid>
 </Page>
-

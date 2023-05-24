@@ -42,7 +42,7 @@
                             <TextBlock Foreground="#A668D5" FontSize="18" Text="Пароль" FontFamily="San Francisco Pro Display" Width="290" Margin="14,0,8,0"/>
                             <PasswordBox x:Name="_pasBox" FontSize="22" FontFamily="San Francisco Pro Display" Width="290" Height="30" BorderThickness="0,0,0,2"/>
                         </StackPanel>
-                        <CheckBox Width="290" Foreground="#A668D5" x:Name="_rememberMe" FontSize="15" FontFamily="San Francisco Pro Display" Content="Запомнить меня" Margin="40,30,0,-5" HorizontalAlignment="Left"/>
+                        <CheckBox Visibility="Hidden" Width="290" Foreground="#A668D5" x:Name="_rememberMe" FontSize="15" FontFamily="San Francisco Pro Display" Content="Запомнить меня" Margin="40,30,0,-5" HorizontalAlignment="Left"/>
                         <Button Style="{DynamicResource NormalButton}"  Background="#9440D5" Foreground="White" x:Name="loginButton" Height="36"  FontSize="24" FontFamily="San Francisco Pro Display" Content="Вход" Width="142" Margin="0,50,0,0" Click="loginButton_Click">
                             <Button.Resources>
                                 <Style TargetType="Border">
